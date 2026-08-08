@@ -1,0 +1,26 @@
+{
+  "name": "Karan Kumar",
+  "track": "Frontend Web Development",
+  "currentDay": 12,
+  "currentStreak": 11,
+  "longestStreak": 11,
+  "completedDays": 11,
+  "missedDays": 0,
+  "progress": 11,
+  "achievements": [
+    {
+      "id": "first-7",
+      "title": "First 7 Days",
+      "description": "Completed your first week",
+      "icon": "Trophy",
+      "earnedAt": "2026-08-01T12:00:00Z"
+    },
+    {
+      "id": "10-builds",
+      "title": "10 Builds",
+      "description": "Shipped 10 builds",
+      "icon": "Zap",
+      "earnedAt": "2026-08-04T12:00:00Z"
+    }
+  ]
+}

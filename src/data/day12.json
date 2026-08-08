@@ -1,0 +1,55 @@
+{
+  "dayNumber": 12,
+  "title": "Build a responsive developer portfolio",
+  "description": "Stop learning in private. Build a central hub to showcase your public proof of work. Your portfolio is your strongest asset.",
+  "objective": "Create a fully responsive developer portfolio layout with sections for hero, about, skills, and projects.",
+  "estimatedTime": "45–60 min",
+  "skills": ["HTML", "CSS", "Responsive Design"],
+  "checklist": [
+    {
+      "id": "hero",
+      "label": "Hero section completed",
+      "checked": false
+    },
+    {
+      "id": "about",
+      "label": "About section added",
+      "checked": false
+    },
+    {
+      "id": "skills",
+      "label": "Skills section added",
+      "checked": false
+    },
+    {
+      "id": "projects",
+      "label": "Projects section added",
+      "checked": false
+    },
+    {
+      "id": "responsive",
+      "label": "Mobile responsive layout works",
+      "checked": false
+    },
+    {
+      "id": "github",
+      "label": "GitHub repository updated",
+      "checked": false
+    },
+    {
+      "id": "linkedin",
+      "label": "LinkedIn post published",
+      "checked": false
+    }
+  ],
+  "githubProof": {
+    "repository": "",
+    "commit": "",
+    "status": "pending" 
+  },
+  "linkedinProof": {
+    "url": "",
+    "status": "pending"
+  },
+  "status": "in-progress"
+}

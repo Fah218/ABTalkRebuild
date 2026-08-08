@@ -1,36 +1,57 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# ABTalks Frontend Prototype
 
-## Getting Started
+A polished, mobile-first frontend prototype for the ABTalks 60-day coding challenge platform.
 
-First, run the development server:
+## Problem
+Indian college students need a structured way to build consistently, maintain a public track record of their work, and improve visibility for recruiters. Learning in private often leads to endless tutorials with no finished projects.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Solution
+A 60-day coding challenge platform where students receive a daily task, build it, and provide proof of work via GitHub commits and LinkedIn posts.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Core UX Idea: Momentum Recovery
+If a student misses a day, they are not shamed and their progress is not erased. The product separates "Current Streak" from "Challenge Progress", showing a "Your streak paused. Your progress didn't." state that encourages recovery rather than abandonment.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Tech Stack
+- **Framework**: Next.js (App Router)
+- **Styling**: Vanilla CSS (CSS Modules & Global variables)
+- **Icons**: Lucide React
+- **Data**: Mocked JSON
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Architecture
+- `src/app`: Next.js pages for routing.
+- `src/components/ui`: Reusable primitive components (Button, Card, Badge, etc.)
+- `src/data`: Mock JSON data driving the UI state.
+- `src/lib`: Utilities (clsx).
 
-## Learn More
+## Routes
+- `/` - Landing Page
+- `/dashboard` - Student Dashboard
+- `/day/[id]` (e.g. `/day/12`) - Challenge Day View
 
-To learn more about Next.js, take a look at the following resources:
+## Route Map
+- `/`
+- `/dashboard`
+- `/day/12`
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## How to run locally
+1. `npm install`
+2. `npm run dev`
+3. Open `http://localhost:3000`
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+*Test using mobile browser emulation at 390px width for the intended experience.*
 
-## Deploy on Vercel
+## Deployment URL
+[Placeholder for Deployment URL]
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## AI Usage Log
+Please refer to `AI_USAGE_LOG.md` for details on how AI was used during development.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Design Decisions
+- **Mobile First**: Target viewport of 390px ensuring typography, spacing, and interaction design feel premium on phones.
+- **Natural Palette**: Deep forest green, sage, and warm cream for a calm environment that suits late-night building sessions.
+- **Vanilla CSS**: Kept dependencies low by strictly using Vanilla CSS with CSS modules and a global CSS variable system.
+- **Component Reusability**: Built a custom lightweight design system (Button, Card, Badge, ProgressBar) instead of relying on heavy component libraries.
+
+## Edge Cases Handled
+- **Missed Day**: Handled via "Momentum Recovery" banner on the dashboard (set `currentStreak: 0` in `src/data/student.json` to view).
+- **First Day**: Progress calculation naturally supports starting states. Empty profiles show an inviting first-milestone message.
