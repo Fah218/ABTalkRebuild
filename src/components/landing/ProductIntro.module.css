@@ -1,0 +1,112 @@
+.introSection {
+  padding: 60px 0;
+  border-top: 1px solid var(--border-color);
+}
+
+.title {
+  font-size: 28px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  margin-bottom: 16px;
+}
+
+.description {
+  font-size: 16px;
+  color: var(--text-muted);
+  line-height: 1.6;
+  margin-bottom: 40px;
+}
+
+.description strong {
+  color: var(--text-main);
+  font-weight: 600;
+}
+
+.visualLoop {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  position: relative;
+  padding-left: 24px;
+}
+
+.loopLine {
+  position: absolute;
+  left: 11px;
+  top: 16px;
+  bottom: 16px;
+  width: 2px;
+  background-color: var(--border-color);
+  z-index: 0;
+}
+
+.loopItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  position: relative;
+  z-index: 1;
+}
+
+.loopNode {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background-color: var(--bg-surface);
+  border: 2px solid var(--border-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: -24px;
+  flex-shrink: 0;
+  margin-top: 2px;
+  transition: border-color 0.3s ease;
+}
+
+.loopItem:hover .loopNode {
+  border-color: var(--brand-accent);
+}
+
+.loopNodeInner {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--brand-primary);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.loopItem:hover .loopNodeInner {
+  opacity: 1;
+}
+
+.loopContent {
+  flex: 1;
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  padding: 16px;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.loopItem:hover .loopContent {
+  transform: translateX(4px);
+  box-shadow: var(--shadow-md);
+}
+
+.loopTitle {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text-main);
+  margin-bottom: 4px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.loopDesc {
+  font-size: 13px;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
