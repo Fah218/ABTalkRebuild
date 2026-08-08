@@ -2,7 +2,7 @@
 
 import React, { useState, useMemo } from "react";
 import Link from "next/link";
-import { Clock, Code2, Briefcase, Trophy, Zap, ArrowRight, Search, CheckCircle2 } from "lucide-react";
+import { Clock, Code2, Briefcase, Trophy, Zap, ArrowRight, Search, CheckCircle2, AlertCircle, Calendar } from "lucide-react";
 import styles from "./page.module.css";
 import studentData from "@/data/student.json";
 import challengeData from "@/data/challenge.json";
@@ -17,15 +17,26 @@ export default function DashboardPage() {
     return Array.from({ length: challengeData.totalDays }, (_, i) => {
       const dayNum = i + 1;
       let status = "upcoming";
-      if (dayNum < studentData.currentDay) status = "completed";
-      else if (dayNum === studentData.currentDay) status = "today";
       
+      if (dayNum < studentData.currentDay) {
+        // Mock a missed day and a catchup day for testing
+        if (dayNum === 10) status = "missed";
+        else if (dayNum === 11) status = "catchup";
+        else status = "completed";
+      } else if (dayNum === studentData.currentDay) {
+        status = "today";
+      }
+      
+      let title = `Build task for Day ${dayNum}`;
+      if (status === "upcoming") title = "Locked";
+      if (dayNum === studentData.currentDay) title = day12Data.title;
+
       return {
         day: dayNum,
         status,
-        title: status === "upcoming" ? "Locked" : dayNum === studentData.currentDay ? day12Data.title : `Build task for Day ${dayNum}`,
+        title,
         learned: status === "completed" ? `Successfully learned and applied concepts for day ${dayNum}. Built something cool and shared it.` : "",
-        timeSpent: status === "completed" ? "45 min" : status === "today" ? "-" : "-",
+        timeSpent: status === "completed" ? "45 min" : (status === "today" ? day12Data.estimatedTime : "-"),
       };
     });
   }, []);
@@ -33,10 +44,136 @@ export default function DashboardPage() {
   const selectedDayData = selectedDay ? history.find(d => d.day === selectedDay) : null;
   const recentBuilds = history.filter(d => d.status === "completed").reverse().slice(0, 3);
 
-  // Filter for search
   const searchedBuilds = searchQuery 
-    ? history.filter(d => d.status === "completed" && d.title.toLowerCase().includes(searchQuery.toLowerCase()))
+    ? history.filter(d => ["completed", "today", "missed", "catchup"].includes(d.status) && d.title.toLowerCase().includes(searchQuery.toLowerCase()))
     : recentBuilds;
+
+  const renderJournalContent = () => {
+    if (!selectedDayData) return null;
+
+    if (selectedDayData.status === "upcoming") {
+      return (
+        <div className={styles.journalPanel}>
+          <div className={styles.journalHeader}>
+            <div>
+              <h4 className={styles.journalTitle}>Day {selectedDayData.day}</h4>
+              <div className={styles.journalMeta}>
+                <div className={styles.journalMetaItem}>
+                  <Calendar size={14} className={styles.badgeUpcoming} />
+                  <span className={styles.badgeUpcoming}>Upcoming</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className={styles.journalContent}>
+            <div className={styles.journalText}>Keep building today&apos;s task. This day will unlock when it becomes available.</div>
+          </div>
+          <div className={styles.journalActions}>
+            <button className={styles.btnSecondary} onClick={() => setSelectedDay(null)}>Close</button>
+          </div>
+        </div>
+      );
+    }
+
+    if (selectedDayData.status === "missed" || selectedDayData.status === "catchup") {
+      const isCatchUp = selectedDayData.status === "catchup";
+      const statusClass = isCatchUp ? styles.badgeCatchUp : styles.badgeMissed;
+      
+      return (
+        <div className={styles.journalPanel}>
+          <div className={styles.journalHeader}>
+            <div>
+              <h4 className={styles.journalTitle}>Day {selectedDayData.day}: {selectedDayData.title}</h4>
+              <div className={styles.journalMeta}>
+                <div className={styles.journalMetaItem}>
+                  <AlertCircle size={14} className={statusClass} />
+                  <span className={statusClass}>{isCatchUp ? "Catch Up Available" : "Missed"}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className={styles.journalActions}>
+            <Link href={`/day/${selectedDayData.day}`} className={styles.btnPrimary}>
+              {isCatchUp ? "Catch Up" : "View Task"}
+            </Link>
+            <button className={styles.btnSecondary} onClick={() => setSelectedDay(null)}>Close</button>
+          </div>
+        </div>
+      );
+    }
+
+    if (selectedDayData.status === "today") {
+      return (
+        <div className={styles.journalPanel}>
+          <div className={styles.journalHeader}>
+            <div>
+              <h4 className={styles.journalTitle}>Day {selectedDayData.day}: {selectedDayData.title}</h4>
+              <div className={styles.journalMeta}>
+                <div className={styles.journalMetaItem}>
+                  <Clock size={14} className={styles.badgeToday} />
+                  <span className={styles.badgeToday}>Current / In Progress</span>
+                </div>
+                <div className={styles.journalMetaItem}>
+                  <Clock size={14} />
+                  <span>{selectedDayData.timeSpent}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className={styles.journalActions}>
+            <Link href={`/day/${selectedDayData.day}`} className={styles.btnPrimary}>
+              Continue Today&apos;s Build
+            </Link>
+            <button className={styles.btnSecondary} onClick={() => setSelectedDay(null)}>Close</button>
+          </div>
+        </div>
+      );
+    }
+
+    // Completed Day Flow
+    return (
+      <div className={styles.journalPanel}>
+        <div className={styles.journalHeader}>
+          <div>
+            <h4 className={styles.journalTitle}>Day {selectedDayData.day}: {selectedDayData.title}</h4>
+            <div className={styles.journalMeta}>
+              <div className={styles.journalMetaItem}>
+                <CheckCircle2 size={14} className={styles.badgeCompleted} />
+                <span className={styles.badgeCompleted}>Completed / On Time</span>
+              </div>
+              <div className={styles.journalMetaItem}>
+                <Clock size={14} />
+                <span>{selectedDayData.timeSpent}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {selectedDayData.learned && (
+          <div className={styles.journalContent}>
+            <div className={styles.journalLabel}>What I learned</div>
+            <div className={styles.journalText}>{selectedDayData.learned}</div>
+          </div>
+        )}
+
+        <div className={styles.journalLinks}>
+          <div className={styles.journalLink}>
+            <Code2 size={16} /> GitHub Proof
+          </div>
+          <div className={styles.journalLink}>
+            <Briefcase size={16} /> LinkedIn Proof
+          </div>
+        </div>
+
+        <div className={styles.journalActions}>
+          <Link href={`/day/${selectedDayData.day}`} className={styles.btnPrimary}>
+            View Task
+          </Link>
+          <button className={styles.btnSecondary} onClick={() => setSelectedDay(null)}>Close</button>
+        </div>
+      </div>
+    );
+  };
 
   return (
     <div className="container">
@@ -88,6 +225,7 @@ export default function DashboardPage() {
                   if (day.status === "completed") cellClass = styles.statusCompleted;
                   if (day.status === "today") cellClass = styles.statusToday;
                   if (day.status === "missed") cellClass = styles.statusMissed;
+                  if (day.status === "catchup") cellClass = styles.statusCatchUp;
 
                   const isSelected = selectedDay === day.day;
 
@@ -95,7 +233,7 @@ export default function DashboardPage() {
                     <div 
                       key={day.day} 
                       className={`${styles.dayCell} ${cellClass} ${isSelected ? styles.selected : ''}`}
-                      onClick={() => (day.status === "completed" || day.status === "today") ? setSelectedDay(isSelected ? null : day.day) : null}
+                      onClick={() => setSelectedDay(isSelected ? null : day.day)}
                       title={`Day ${day.day}: ${day.title}`}
                     >
                       {day.day}
@@ -104,49 +242,22 @@ export default function DashboardPage() {
                 })}
               </div>
 
-              {/* Clickable Day Journal Panel */}
-              {selectedDayData && (
-                <div className={styles.journalPanel}>
-                  <div className={styles.journalHeader}>
-                    <div>
-                      <h4 className={styles.journalTitle}>Day {selectedDayData.day}: {selectedDayData.title}</h4>
-                      <div className={styles.journalMeta}>
-                        <div className={styles.journalMetaItem}>
-                          <CheckCircle2 size={14} className="text-brand-success" />
-                          <span>{selectedDayData.status === "today" ? "In Progress" : "Completed"}</span>
-                        </div>
-                        <div className={styles.journalMetaItem}>
-                          <Clock size={14} />
-                          <span>{selectedDayData.timeSpent}</span>
-                        </div>
-                      </div>
-                    </div>
-                    {selectedDayData.status === "today" && (
-                      <Link href={`/day/${selectedDayData.day}`} className={styles.heroCta} style={{ padding: "8px 16px", fontSize: "13px" }}>
-                        Open Task
-                      </Link>
-                    )}
-                  </div>
-
-                  {selectedDayData.learned && (
-                    <div className={styles.journalContent}>
-                      <div className={styles.journalLabel}>What I learned</div>
-                      <div className={styles.journalText}>{selectedDayData.learned}</div>
-                    </div>
-                  )}
-
-                  {selectedDayData.status === "completed" && (
-                    <div className={styles.journalLinks}>
-                      <a href="#" className={styles.journalLink}>
-                        <Code2 size={16} /> View Code
-                      </a>
-                      <a href="#" className={styles.journalLink}>
-                        <Briefcase size={16} /> View Post
-                      </a>
-                    </div>
-                  )}
+              {/* Legend & Helper Text */}
+              <div className={styles.gridFooter}>
+                <div className={styles.legend}>
+                  <div className={styles.legendItem}><div className={`${styles.legendDot} ${styles.statusCompleted}`} /> Completed</div>
+                  <div className={styles.legendItem}><div className={`${styles.legendDot} ${styles.statusToday}`} /> Today</div>
+                  <div className={styles.legendItem}><div className={`${styles.legendDot} ${styles.statusUpcoming}`} /> Upcoming</div>
+                  <div className={styles.legendItem}><div className={`${styles.legendDot} ${styles.statusMissed}`} /> Missed</div>
+                  <div className={styles.legendItem}><div className={`${styles.legendDot} ${styles.statusCatchUp}`} /> Catch Up</div>
                 </div>
-              )}
+                <div className={styles.helperText}>
+                  Click any day to view its task and progress &rarr;
+                </div>
+              </div>
+
+              {/* Clickable Day Journal Panel */}
+              {renderJournalContent()}
             </div>
           </section>
 

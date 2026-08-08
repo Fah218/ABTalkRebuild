@@ -14,6 +14,10 @@
   --brand-accent-rgb: 133, 169, 143;
   --brand-success: #2b7a4b;
   --brand-success-rgb: 43, 122, 75;
+  --brand-error: #e53e3e;
+  --brand-error-rgb: 229, 62, 62;
+  --brand-warning: #d97706;
+  --brand-warning-rgb: 217, 119, 6;
   
   --border-color: #dcd7ce; /* Stronger, warmer border to define boundaries */
   --border-active: #85a98f;
@@ -45,6 +49,10 @@
   --brand-accent-rgb: 163, 184, 153;
   --brand-success: #4ade80;
   --brand-success-rgb: 74, 222, 128;
+  --brand-error: #ef4444;
+  --brand-error-rgb: 239, 68, 68;
+  --brand-warning: #f59e0b;
+  --brand-warning-rgb: 245, 158, 11;
   
   --border-color: #28362d;
   --border-active: #4ade80;
@@ -69,6 +77,10 @@
     --brand-accent-rgb: 163, 184, 153;
     --brand-success: #4ade80;
     --brand-success-rgb: 74, 222, 128;
+    --brand-error: #ef4444;
+    --brand-error-rgb: 239, 68, 68;
+    --brand-warning: #f59e0b;
+    --brand-warning-rgb: 245, 158, 11;
     
     --border-color: #28362d;
     --border-active: #4ade80;
