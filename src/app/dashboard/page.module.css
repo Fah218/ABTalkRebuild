@@ -28,6 +28,7 @@
 .header { padding: 24px 0 32px; }
 
 .greeting {
+  font-family: var(--font-syne), "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   font-size: 28px;
   font-weight: 800;
   letter-spacing: -0.02em;
@@ -73,6 +74,7 @@
 }
 
 .heroTitle {
+  font-family: var(--font-syne), "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   font-size: 20px;
   font-weight: 700;
   color: var(--text-main);
@@ -140,6 +142,7 @@
 }
 
 .sectionTitle {
+  font-family: var(--font-syne), "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   font-size: 14px;
   font-weight: 700;
   letter-spacing: 0.05em;
@@ -175,11 +178,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 11px;
-  font-weight: 600;
+  font-size: 13px;
+  font-weight: 700;
   cursor: pointer;
   transition: all 0.2s ease;
-  border: 2px solid transparent;
+  border: 1px solid transparent;
 }
 
 .dayCell:hover { transform: scale(1.1); z-index: 10; }
@@ -196,9 +199,9 @@
 }
 
 .statusToday {
-  background-color: var(--bg-surface);
+  background-color: rgba(var(--brand-primary-rgb), 0.15);
   border-color: var(--brand-primary);
-  color: var(--brand-primary);
+  color: var(--text-main);
   box-shadow: 0 0 0 1px var(--brand-primary);
 }
 .statusToday:hover, .statusToday.selected {
@@ -230,12 +233,11 @@
 
 .statusUpcoming {
   background-color: transparent;
-  border: 1px dashed var(--border-color);
+  border-color: var(--border-color);
   color: var(--text-muted);
-  opacity: 0.4;
 }
 .statusUpcoming:hover, .statusUpcoming.selected { 
-  border: 1px solid var(--text-muted);
+  border-color: var(--text-muted);
   color: var(--text-main);
   background-color: var(--bg-surface-muted);
 }
@@ -259,7 +261,7 @@
   align-items: center;
   gap: 8px;
   font-size: 12px;
-  color: var(--text-muted);
+  color: var(--text-main);
   font-weight: 600;
 }
 
@@ -267,13 +269,23 @@
   width: 12px;
   height: 12px;
   border-radius: 4px;
-  border: 2px solid transparent;
+}
+
+.legendCompleted { background-color: var(--brand-success); }
+.legendToday { background-color: var(--brand-primary); }
+.legendMissed { background-color: var(--brand-error); }
+.legendCatchUp { background-color: var(--brand-warning); }
+.legendUpcoming { 
+  background-color: transparent; 
+  border: 2px solid var(--border-color);
 }
 
 .helperText {
-  font-size: 13px;
+  font-size: 12px;
   color: var(--text-muted);
+  font-style: italic;
   font-weight: 500;
+  opacity: 0.8;
 }
 
 /* Clickable Day Journal Panel */
@@ -294,6 +306,7 @@
 }
 
 .journalTitle {
+  font-family: var(--font-syne), "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   font-size: 18px;
   font-weight: 700;
   color: var(--text-main);
@@ -498,6 +511,7 @@
 }
 
 .listTitle {
+  font-family: var(--font-syne), "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   font-size: 14px;
   font-weight: 700;
   color: var(--text-main);

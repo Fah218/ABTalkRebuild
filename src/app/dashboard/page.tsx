@@ -3,6 +3,7 @@
 import React, { useState, useMemo } from "react";
 import Link from "next/link";
 import { Clock, Code2, Briefcase, Trophy, Zap, ArrowRight, Search, CheckCircle2, AlertCircle, Calendar } from "lucide-react";
+import { Header } from "@/components/shared/Header";
 import styles from "./page.module.css";
 import studentData from "@/data/student.json";
 import challengeData from "@/data/challenge.json";
@@ -176,8 +177,10 @@ export default function DashboardPage() {
   };
 
   return (
-    <div className="container">
-      <header className={`${styles.header} ${styles.animateSection}`}>
+    <>
+      <Header />
+      <div className="container">
+        <header className={`${styles.header} ${styles.animateSection}`}>
         <h1 className={styles.greeting}>Good evening, builder.</h1>
         
         {/* Today's Build Hero */}
@@ -245,11 +248,11 @@ export default function DashboardPage() {
               {/* Legend & Helper Text */}
               <div className={styles.gridFooter}>
                 <div className={styles.legend}>
-                  <div className={styles.legendItem}><div className={`${styles.legendDot} ${styles.statusCompleted}`} /> Completed</div>
-                  <div className={styles.legendItem}><div className={`${styles.legendDot} ${styles.statusToday}`} /> Today</div>
-                  <div className={styles.legendItem}><div className={`${styles.legendDot} ${styles.statusUpcoming}`} /> Upcoming</div>
-                  <div className={styles.legendItem}><div className={`${styles.legendDot} ${styles.statusMissed}`} /> Missed</div>
-                  <div className={styles.legendItem}><div className={`${styles.legendDot} ${styles.statusCatchUp}`} /> Catch Up</div>
+                  <div className={styles.legendItem}><div className={`${styles.legendDot} ${styles.legendCompleted}`} /> Completed</div>
+                  <div className={styles.legendItem}><div className={`${styles.legendDot} ${styles.legendToday}`} /> Today</div>
+                  <div className={styles.legendItem}><div className={`${styles.legendDot} ${styles.legendUpcoming}`} /> Upcoming</div>
+                  <div className={styles.legendItem}><div className={`${styles.legendDot} ${styles.legendMissed}`} /> Missed</div>
+                  <div className={styles.legendItem}><div className={`${styles.legendDot} ${styles.legendCatchUp}`} /> Catch Up</div>
                 </div>
                 <div className={styles.helperText}>
                   Click any day to view its task and progress &rarr;
@@ -312,12 +315,12 @@ export default function DashboardPage() {
             <h3 className={styles.sectionTitle}>Milestones</h3>
             <div className={styles.itemList}>
               {studentData.achievements.map((achievement) => (
-                <div key={achievement.id} className={styles.achievementBadge}>
+                <div key={achievement.id} className={styles.listItem}>
                   <div className={styles.listItemIcon}>
                     {achievement.icon === "Trophy" ? <Trophy size={18} /> : <Zap size={18} />}
                   </div>
                   <div className={styles.listContent}>
-                    <div className={styles.achievementTitle}>{achievement.title}</div>
+                    <div className={styles.listTitle}>{achievement.title}</div>
                     <div className={styles.listDesc}>{achievement.description}</div>
                   </div>
                 </div>
@@ -328,5 +331,6 @@ export default function DashboardPage() {
         </div>
       </main>
     </div>
+    </>
   );
 }

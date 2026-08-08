@@ -59,3 +59,8 @@ Refined the `/dashboard` experience with an interactive 60-day activity system u
 ## Dashboard Activity Interaction
 
 Enhanced the 60-Day Activity grid with clear status states, a visual legend, clickable day interactions, and contextual day-detail/view-task flow while keeping the ABTalks visual system and responsive behavior consistent.
+
+
+## Dashboard Theme & Typography
+
+Unified `/dashboard` with the landing page's Syne + Manrope typography system and shared dark/light theme toggle while preserving existing dashboard functionality and layout.
