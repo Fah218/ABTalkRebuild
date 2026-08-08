@@ -42,14 +42,14 @@
   padding: 16px;
   font-size: 16px;
   border-radius: var(--radius-full);
-  box-shadow: 0 10px 25px -5px rgba(20, 61, 44, 0.2);
+  box-shadow: 0 10px 25px -5px rgba(var(--brand-primary-rgb), 0.2);
   transform: translateY(0);
   transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
 }
 
 .primaryCTA:hover {
   transform: translateY(-2px);
-  box-shadow: 0 15px 30px -5px rgba(20, 61, 44, 0.3);
+  box-shadow: 0 15px 30px -5px rgba(var(--brand-primary-rgb), 0.3);
 }
 
 .visualSequence {
@@ -86,7 +86,7 @@
 }
 
 .buildIcon {
-  background: rgba(43, 122, 75, 0.1);
+  background: rgba(var(--brand-success-rgb), 0.1);
   color: var(--brand-primary);
 }
 
@@ -94,22 +94,18 @@
   background: rgba(36, 41, 47, 0.1);
   color: #24292f;
 }
-@media (prefers-color-scheme: dark) {
-  .proveIcon {
-    background: rgba(241, 245, 249, 0.1);
-    color: #f1f5f9;
-  }
+:global([data-theme='dark']) .proveIcon {
+  background: rgba(241, 245, 249, 0.1);
+  color: #f1f5f9;
 }
 
 .shareIcon {
   background: rgba(10, 102, 194, 0.1);
   color: #0a66c2;
 }
-@media (prefers-color-scheme: dark) {
-  .shareIcon {
-    background: rgba(10, 102, 194, 0.2);
-    color: #70b5f9;
-  }
+:global([data-theme='dark']) .shareIcon {
+  background: rgba(10, 102, 194, 0.2);
+  color: #70b5f9;
 }
 
 .cardText {

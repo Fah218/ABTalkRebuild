@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Syne, Manrope } from "next/font/google";
+import { ThemeProvider } from "@/components/ThemeProvider";
 import "./globals.css";
 
 const syne = Syne({
@@ -22,8 +23,29 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     <html
       lang="en"
       className={`${syne.variable} ${manrope.variable}`}
+      suppressHydrationWarning
     >
-      <body>{children}</body>
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function() {
+                try {
+                  var savedTheme = localStorage.getItem('abtalks-theme');
+                  if (savedTheme && savedTheme !== 'system') {
+                    document.documentElement.setAttribute('data-theme', savedTheme);
+                  }
+                } catch (e) {}
+              })();
+            `,
+          }}
+        />
+      </head>
+      <body>
+        <ThemeProvider>
+          {children}
+        </ThemeProvider>
+      </body>
     </html>
   );
 }

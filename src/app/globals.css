@@ -1,6 +1,7 @@
-:root {
+:root, [data-theme='light'] {
   /* Light Mode Palette */
   --bg-main: #fefcf8; /* Warm cream */
+  --bg-main-rgb: 254, 252, 248;
   --bg-surface: #ffffff;
   --bg-surface-muted: #f7fafc;
   
@@ -8,8 +9,11 @@
   --text-muted: #718096;
   
   --brand-primary: #143d2c; /* Deep forest green */
+  --brand-primary-rgb: 20, 61, 44;
   --brand-accent: #85a98f; /* Sage green */
+  --brand-accent-rgb: 133, 169, 143;
   --brand-success: #2b7a4b;
+  --brand-success-rgb: 43, 122, 75;
   
   --border-color: #e2e8f0;
   --border-active: #85a98f;
@@ -25,19 +29,46 @@
   --transition-normal: 0.3s ease;
 }
 
+[data-theme='dark'] {
+  /* Dark Mode Palette - Calm Night */
+  --bg-main: #111613; /* Very dark green/charcoal */
+  --bg-main-rgb: 17, 22, 19;
+  --bg-surface: #17211c;
+  --bg-surface-muted: #1f2c25;
+  
+  --text-main: #f1f5f9; /* Off-white */
+  --text-muted: #94a3b8;
+  
+  --brand-primary: #4ade80; /* Brighter for contrast in dark mode */
+  --brand-primary-rgb: 74, 222, 128;
+  --brand-accent: #a3b899; 
+  --brand-accent-rgb: 163, 184, 153;
+  --brand-success: #4ade80;
+  --brand-success-rgb: 74, 222, 128;
+  
+  --border-color: #28362d;
+  --border-active: #4ade80;
+  
+  --shadow-sm: 0 1px 2px rgba(0,0,0,0.2);
+  --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.3);
+}
+
 @media (prefers-color-scheme: dark) {
-  :root {
-    /* Dark Mode Palette - Calm Night */
-    --bg-main: #111613; /* Very dark green/charcoal */
+  :root:not([data-theme='light']) {
+    --bg-main: #111613;
+    --bg-main-rgb: 17, 22, 19;
     --bg-surface: #17211c;
     --bg-surface-muted: #1f2c25;
     
-    --text-main: #f1f5f9; /* Off-white */
+    --text-main: #f1f5f9;
     --text-muted: #94a3b8;
     
-    --brand-primary: #4ade80; /* Brighter for contrast in dark mode */
-    --brand-accent: #a3b899; 
+    --brand-primary: #4ade80;
+    --brand-primary-rgb: 74, 222, 128;
+    --brand-accent: #a3b899;
+    --brand-accent-rgb: 163, 184, 153;
     --brand-success: #4ade80;
+    --brand-success-rgb: 74, 222, 128;
     
     --border-color: #28362d;
     --border-active: #4ade80;
@@ -182,16 +213,9 @@ input {
 }
 
 .badge-success {
-  background-color: rgba(43, 122, 75, 0.1);
+  background-color: rgba(var(--brand-success-rgb), 0.1);
   color: var(--brand-success);
-  border-color: rgba(43, 122, 75, 0.2);
-}
-@media (prefers-color-scheme: dark) {
-  .badge-success {
-    background-color: rgba(74, 222, 128, 0.1);
-    color: var(--brand-success);
-    border-color: rgba(74, 222, 128, 0.2);
-  }
+  border-color: rgba(var(--brand-success-rgb), 0.2);
 }
 
 .progress-bar-container {

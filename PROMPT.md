@@ -34,3 +34,6 @@ The initial prototype was reviewed and will be refined incrementally through foc
 
 
 9. Fixed landing-page navbar navigation and routing for Home, How It Works, Challenge, and Start.
+
+
+10. Added a site-wide dark/light theme toggle with the existing dark theme preserved, a new light theme, persistent theme preference, and responsive sun/moon controls across all required routes.
