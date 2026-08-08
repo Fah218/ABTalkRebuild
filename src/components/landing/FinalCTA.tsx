@@ -37,7 +37,7 @@ export function FinalCTA() {
       
       <div className={styles.ctaWrapper}>
         <Link href="/dashboard" style={{ display: "block" }}>
-          <Button className={styles.primaryCTA}>Start the 60-Day Challenge</Button>
+          <Button className={`${styles.primaryCTA} font-semibold`}>Start the 60-Day Challenge</Button>
         </Link>
       </div>
     </section>

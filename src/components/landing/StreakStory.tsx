@@ -35,7 +35,7 @@ export function StreakStory() {
           </div>
           
           <div className={styles.progressVisual}>
-            <div className={`${styles.progressLabel} font-heading`}>11 / 60 DAYS COMPLETE</div>
+            <div className={styles.progressLabel}>11 / 60 DAYS COMPLETE</div>
             <div className={styles.progressBarContainer}>
               <div className={styles.progressBarFill} />
             </div>

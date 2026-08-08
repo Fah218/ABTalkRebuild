@@ -31,3 +31,6 @@ The initial prototype was reviewed and will be refined incrementally through foc
 
 
 9. Refined the landing page typography using Syne for hero headings, major section headings, milestones, and ABTalks brand elements, while keeping Manrope for body text, navigation, descriptions, buttons, and UI content. Improved typography hierarchy and visual consistency without changing the existing landing-page structure or functionality.
+
+
+9. Fixed landing-page navbar navigation and routing for Home, How It Works, Challenge, and Start.

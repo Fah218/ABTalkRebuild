@@ -10,9 +10,9 @@ export function Hero() {
   return (
     <section className={styles.heroSection}>
       <h1 className={`${styles.title} font-heading animate-fade-in-up`}>
-        <span>60 days.</span>
-        <span>60 builds.</span>
-        <span className={styles.titleHighlight}>One public proof<br />of growth.</span>
+        <span className="font-bold">60 days.</span>
+        <span className="font-bold">60 builds.</span>
+        <span className={`${styles.titleHighlight} font-extrabold`}>One public proof<br />of growth.</span>
       </h1>
       
       <p className={`${styles.subtitle} animate-fade-in-up delay-100`}>

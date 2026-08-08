@@ -53,6 +53,10 @@
   padding: 0;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 html, body {
   height: 100%;
 }
@@ -114,6 +118,11 @@ input {
 .font-heading {
   font-family: var(--font-syne), "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 }
+
+.font-medium { font-weight: 500; }
+.font-semibold { font-weight: 600; }
+.font-bold { font-weight: 700; }
+.font-extrabold { font-weight: 800; }
 
 /* Components */
 .btn {
