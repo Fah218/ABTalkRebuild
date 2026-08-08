@@ -9,7 +9,7 @@ import styles from "./Hero.module.css";
 export function Hero() {
   return (
     <section className={styles.heroSection}>
-      <h1 className={`${styles.title} animate-fade-in-up`}>
+      <h1 className={`${styles.title} font-heading animate-fade-in-up`}>
         <span>60 days.</span>
         <span>60 builds.</span>
         <span className={styles.titleHighlight}>One public proof<br />of growth.</span>

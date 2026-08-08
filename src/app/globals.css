@@ -60,7 +60,7 @@ html, body {
 body {
   background-color: var(--bg-main);
   color: var(--text-main);
-  font-family: var(--font-geist-sans), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-family: var(--font-manrope), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   line-height: 1.5;
@@ -109,6 +109,10 @@ input {
   clip: rect(0, 0, 0, 0);
   white-space: nowrap;
   border-width: 0;
+}
+
+.font-heading {
+  font-family: var(--font-syne), "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 }
 
 /* Components */

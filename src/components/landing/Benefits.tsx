@@ -50,7 +50,7 @@ export function Benefits() {
 
   return (
     <section className={styles.section} ref={sectionRef}>
-      <h2 className={`${styles.title} observe-me`} style={{ opacity: 0 }}>Why public building matters</h2>
+      <h2 className={`${styles.title} font-heading observe-me`} style={{ opacity: 0 }}>Why public building matters</h2>
       
       <div className={styles.benefitsList}>
         {benefits.map((benefit, idx) => (
@@ -59,7 +59,7 @@ export function Benefits() {
               {benefit.icon}
             </div>
             <div className={styles.benefitContent}>
-              <h3 className={styles.benefitTitle}>{benefit.title}</h3>
+              <h3 className={`${styles.benefitTitle} font-heading`}>{benefit.title}</h3>
               <p className={styles.benefitDesc}>{benefit.desc}</p>
             </div>
           </div>

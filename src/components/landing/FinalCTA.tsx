@@ -29,7 +29,7 @@ export function FinalCTA() {
 
   return (
     <section className={`${styles.section} observe-me`} style={{ opacity: 0 }} ref={sectionRef}>
-      <h2 className={styles.title}>
+      <h2 className={`${styles.title} font-heading`}>
         <span>You don&apos;t need</span>
         <span>60 perfect days.</span>
         <span className={styles.highlight}>You just need to build today.</span>

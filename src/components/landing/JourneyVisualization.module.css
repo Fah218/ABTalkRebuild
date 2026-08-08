@@ -77,11 +77,10 @@
 }
 
 .milestoneLabel {
-  font-size: 11px;
+  font-size: 14px;
   font-weight: 700;
   color: var(--text-muted);
   text-transform: uppercase;
-  letter-spacing: 0.05em;
   transition: color 0.3s ease;
 }
 

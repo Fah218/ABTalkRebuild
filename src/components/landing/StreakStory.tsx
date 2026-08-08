@@ -30,12 +30,12 @@ export function StreakStory() {
         
         <div className={styles.visuals}>
           <div className={styles.streakVisual}>
-            <div className={styles.streakNumber}>12</div>
+            <div className={`${styles.streakNumber} font-heading`}>12</div>
             <div className={styles.streakLabel}>Day Streak</div>
           </div>
           
           <div className={styles.progressVisual}>
-            <div className={styles.progressLabel}>11 / 60 DAYS COMPLETE</div>
+            <div className={`${styles.progressLabel} font-heading`}>11 / 60 DAYS COMPLETE</div>
             <div className={styles.progressBarContainer}>
               <div className={styles.progressBarFill} />
             </div>
@@ -43,7 +43,7 @@ export function StreakStory() {
         </div>
 
         <div className={styles.content}>
-          <h2 className={styles.title}>Your streak can pause.<br />Your progress doesn&apos;t have to.</h2>
+          <h2 className={`${styles.title} font-heading`}>Your streak can pause.<br />Your progress doesn&apos;t have to.</h2>
           <p className={styles.description}>
             ABTalks tracks both your consecutive <span className={styles.highlight}>momentum</span> and your total <span className={styles.highlight}>progress</span>. If life happens and you miss a day, you don&apos;t start from zero. You just pick up where you left off.
           </p>

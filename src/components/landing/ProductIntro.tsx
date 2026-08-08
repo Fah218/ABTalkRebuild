@@ -55,7 +55,7 @@ export function ProductIntro() {
 
   return (
     <section id="how-it-works" className={styles.introSection} ref={sectionRef}>
-      <h2 className={`${styles.title} observe-me`} style={{ opacity: 0 }}>What is ABTalks?</h2>
+      <h2 className={`${styles.title} font-heading observe-me`} style={{ opacity: 0 }}>What is ABTalks?</h2>
       <p className={`${styles.description} observe-me`} style={{ opacity: 0 }}>
         ABTalks is a 60-day challenge where students <strong>build something every day</strong> and publicly document their progress. No more endless tutorials—only real projects and a public track record.
       </p>

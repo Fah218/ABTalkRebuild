@@ -35,7 +35,7 @@ export function JourneyVisualization() {
 
   return (
     <section className={styles.journeySection} ref={sectionRef}>
-      <h2 className={styles.title}>The 60-Day Journey</h2>
+      <h2 className={`${styles.title} font-heading`}>The 60-Day Journey</h2>
       
       <div className={styles.timeline}>
         <div className={styles.timelineLine} />
@@ -51,7 +51,7 @@ export function JourneyVisualization() {
               className={`${styles.milestone} ${isActive ? styles.active : ""} ${isHighlight ? styles.highlight : ""}`}
             >
               <div className={styles.milestoneNode} />
-              <div className={styles.milestoneLabel}>DAY {m.day}</div>
+              <div className={`${styles.milestoneLabel} font-heading`}>DAY {m.day}</div>
             </div>
           );
         })}

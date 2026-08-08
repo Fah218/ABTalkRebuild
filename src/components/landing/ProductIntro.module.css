@@ -82,24 +82,24 @@
 
 .loopContent {
   flex: 1;
-  background-color: var(--bg-surface);
-  border: 1px solid var(--border-color);
-  padding: 16px;
-  border-radius: var(--radius-md);
-  box-shadow: var(--shadow-sm);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  padding: 8px 0 24px;
+  border-bottom: 1px solid var(--border-color);
+  transition: transform 0.2s ease;
+}
+
+.loopItem:last-child .loopContent {
+  border-bottom: none;
 }
 
 .loopItem:hover .loopContent {
   transform: translateX(4px);
-  box-shadow: var(--shadow-md);
 }
 
 .loopTitle {
-  font-size: 15px;
+  font-size: 16px;
   font-weight: 700;
   color: var(--text-main);
-  margin-bottom: 4px;
+  margin-bottom: 6px;
   display: flex;
   align-items: center;
   gap: 8px;

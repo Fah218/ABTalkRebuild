@@ -23,7 +23,7 @@ export function Header() {
         borderBottomColor: scrolled ? "var(--border-color)" : "transparent",
       }}
     >
-      <Link href="/" className={styles.logo}>
+      <Link href="/" className={`${styles.logo} font-heading`}>
         <Terminal size={20} className={styles.logoIcon} />
         ABTalks
       </Link>
@@ -32,7 +32,7 @@ export function Header() {
         <Link href="#how-it-works" className={styles.navLink}>
           How it works
         </Link>
-        <Link href="/dashboard" className={styles.navLink}>
+        <Link href="/day/12" className={styles.navLink}>
           Challenge
         </Link>
         <Link href="/dashboard" className={styles.startBtn}>

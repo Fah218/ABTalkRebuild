@@ -27,3 +27,7 @@ The initial prototype was reviewed and will be refined incrementally through foc
 ## AI-Assisted Development Tasks
 
 8. Redesigned the landing page at `/` as a premium mobile-first product experience with a stronger visual story, Build → Prove → Share journey, 60-day visualization, Day 12 preview, benefits, streak/progress philosophy, improved navigation, and subtle scroll animations while maintaining the 390px target.
+
+
+
+9. Refined the landing page typography using Syne for hero headings, major section headings, milestones, and ABTalks brand elements, while keeping Manrope for body text, navigation, descriptions, buttons, and UI content. Improved typography hierarchy and visual consistency without changing the existing landing-page structure or functionality.

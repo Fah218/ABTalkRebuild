@@ -29,13 +29,13 @@ export function DayPreview() {
   return (
     <section className={styles.section} ref={sectionRef}>
       <div className={`${styles.header} observe-me`} style={{ opacity: 0 }}>
-        <h2 className={styles.title}>One day. One build.</h2>
+        <h2 className={`${styles.title} font-heading`}>One day. One build.</h2>
         <p className={styles.subtitle}>A miniature representation of your daily workspace.</p>
       </div>
 
       <div className={`${styles.previewContainer} observe-me`} style={{ opacity: 0, animationDelay: "150ms" }}>
-        <div className={styles.dayLabel}>DAY 12</div>
-        <h3 className={styles.taskTitle}>Build a responsive developer portfolio</h3>
+        <div className={`${styles.dayLabel} font-heading`}>DAY 12</div>
+        <h3 className={`${styles.taskTitle} font-heading`}>Build a responsive developer portfolio</h3>
         
         <div className={styles.meta}>
           <Clock size={14} />
