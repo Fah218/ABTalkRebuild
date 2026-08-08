@@ -1,0 +1,228 @@
+[
+  {
+    "day": 1,
+    "title": "Setup & The Builder Mindset",
+    "subtitle": "Configuring the environment and committing to 60 days of shipping.",
+    "completionDate": "July 20, 2026",
+    "difficulty": "Easy",
+    "estimatedTime": "1 hour",
+    "whatILearned": "Successfully set up the development environment, linked all necessary accounts, and published the first 'hello world' declaration for the ABTalks challenge. Learned the importance of consistency over intensity.",
+    "learningObjectives": [
+      "Initialize a Git repository and push to GitHub",
+      "Configure Next.js project structure",
+      "Draft a public commitment on LinkedIn"
+    ],
+    "resources": [
+      "Next.js Getting Started Guide",
+      "GitHub documentation for beginners"
+    ],
+    "tags": ["Setup", "Mindset", "Git"],
+    "githubUrl": "https://github.com/builder/abtalks-challenge/commit/1a2b3c",
+    "linkedinUrl": "https://linkedin.com/posts/builder/day-1-abtalks..."
+  },
+  {
+    "day": 2,
+    "title": "Design Systems 101",
+    "subtitle": "Building the foundational typography and color tokens.",
+    "completionDate": "July 21, 2026",
+    "difficulty": "Medium",
+    "estimatedTime": "2 hours",
+    "whatILearned": "Translated a Figma file into CSS variables. Understood how a robust design system prevents spaghetti CSS later. Implemented Syne and Manrope fonts effectively.",
+    "learningObjectives": [
+      "Define CSS custom properties for a theme",
+      "Import and configure custom fonts in Next.js",
+      "Create reusable typography utility classes"
+    ],
+    "resources": [
+      "Figma to CSS best practices",
+      "Next.js Font Optimization"
+    ],
+    "tags": ["Design", "CSS", "UI/UX"],
+    "githubUrl": "https://github.com/builder/abtalks-challenge/commit/2d3e4f",
+    "linkedinUrl": "https://linkedin.com/posts/builder/day-2-abtalks..."
+  },
+  {
+    "day": 3,
+    "title": "Building the Landing Hero",
+    "subtitle": "Crafting the perfect first impression with layout and spacing.",
+    "completionDate": "July 22, 2026",
+    "difficulty": "Medium",
+    "estimatedTime": "2.5 hours",
+    "whatILearned": "Successfully learned and applied the concepts from Day 3. Built the hero section of the landing page, focusing on responsive typography and subtle animations. It was challenging to get the mobile spacing right, but using flexbox made it manageable.",
+    "learningObjectives": [
+      "Implement a responsive flexbox layout",
+      "Add CSS keyframe animations",
+      "Ensure accessible contrast ratios"
+    ],
+    "resources": [
+      "A Complete Guide to Flexbox",
+      "Web.dev Accessibility Basics"
+    ],
+    "tags": ["Frontend", "Animation", "Responsive"],
+    "githubUrl": "https://github.com/builder/abtalks-challenge/commit/5g6h7i",
+    "linkedinUrl": "https://linkedin.com/posts/builder/day-3-abtalks..."
+  },
+  {
+    "day": 4,
+    "title": "Routing and Layouts",
+    "subtitle": "Setting up the App Router architecture.",
+    "completionDate": "July 23, 2026",
+    "difficulty": "Hard",
+    "estimatedTime": "3 hours",
+    "whatILearned": "Wrapped my head around Next.js 13+ App Router. Created the root layout and nested layouts for the dashboard. Understanding server vs client components was a major milestone.",
+    "learningObjectives": [
+      "Create nested layouts in Next.js",
+      "Differentiate between Server and Client components",
+      "Implement persistent navigation"
+    ],
+    "resources": [
+      "Next.js Routing Documentation",
+      "React Server Components explained"
+    ],
+    "tags": ["Next.js", "Architecture", "React"],
+    "githubUrl": "https://github.com/builder/abtalks-challenge/commit/8j9k0l",
+    "linkedinUrl": "https://linkedin.com/posts/builder/day-4-abtalks..."
+  },
+  {
+    "day": 5,
+    "title": "State Management Basics",
+    "subtitle": "Handling UI state with React hooks.",
+    "completionDate": "July 24, 2026",
+    "difficulty": "Medium",
+    "estimatedTime": "2 hours",
+    "whatILearned": "Implemented local state using useState for a complex form. Learned how to lift state up when multiple components need access to the same data.",
+    "learningObjectives": [
+      "Use useState and useEffect correctly",
+      "Lift state up to a common ancestor",
+      "Avoid common React dependency array bugs"
+    ],
+    "resources": [
+      "React Docs: Managing State"
+    ],
+    "tags": ["React", "State", "Hooks"],
+    "githubUrl": "https://github.com/builder/abtalks-challenge/commit/1m2n3o",
+    "linkedinUrl": "https://linkedin.com/posts/builder/day-5-abtalks..."
+  },
+  {
+    "day": 6,
+    "title": "The Global Theme Toggle",
+    "subtitle": "Implementing dark and light modes.",
+    "completionDate": "July 25, 2026",
+    "difficulty": "Medium",
+    "estimatedTime": "2.5 hours",
+    "whatILearned": "Created a robust theme context that respects user system preferences and saves to local storage. Fixed hydration mismatch errors that occur when rendering theme-dependent UI.",
+    "learningObjectives": [
+      "Create a React Context provider",
+      "Interact with localStorage safely in Next.js",
+      "Solve hydration errors"
+    ],
+    "resources": [
+      "Next.js Hydration troubleshooting",
+      "CSS prefers-color-scheme"
+    ],
+    "tags": ["Context", "CSS Variables", "UX"],
+    "githubUrl": "https://github.com/builder/abtalks-challenge/commit/4p5q6r",
+    "linkedinUrl": "https://linkedin.com/posts/builder/day-6-abtalks..."
+  },
+  {
+    "day": 7,
+    "title": "Building Reusable UI Components",
+    "subtitle": "Extracting buttons, cards, and inputs.",
+    "completionDate": "July 26, 2026",
+    "difficulty": "Medium",
+    "estimatedTime": "3 hours",
+    "whatILearned": "Refactored duplicated UI code into generic, reusable components. Learned how to pass HTML attributes down using rest parameters in TypeScript.",
+    "learningObjectives": [
+      "Design a flexible component API",
+      "Use TypeScript interface extending (React.ComponentProps)",
+      "Create component variants (primary, secondary)"
+    ],
+    "resources": [
+      "TypeScript for React Developers"
+    ],
+    "tags": ["Components", "TypeScript", "Refactoring"],
+    "githubUrl": "https://github.com/builder/abtalks-challenge/commit/7s8t9u",
+    "linkedinUrl": "https://linkedin.com/posts/builder/day-7-abtalks..."
+  },
+  {
+    "day": 8,
+    "title": "Mocking API Data",
+    "subtitle": "Creating robust JSON fixtures.",
+    "completionDate": "July 27, 2026",
+    "difficulty": "Easy",
+    "estimatedTime": "1.5 hours",
+    "whatILearned": "Designed realistic mock data schemas to unblock frontend development. Realized that good mock data makes UI design much easier.",
+    "learningObjectives": [
+      "Structure JSON data logically",
+      "Import and type JSON data in TypeScript",
+      "Map over data to render lists"
+    ],
+    "resources": [
+      "JSON structure best practices"
+    ],
+    "tags": ["Data", "JSON", "Architecture"],
+    "githubUrl": "https://github.com/builder/abtalks-challenge/commit/0v1w2x",
+    "linkedinUrl": "https://linkedin.com/posts/builder/day-8-abtalks..."
+  },
+  {
+    "day": 9,
+    "title": "Dashboard Layout Grid",
+    "subtitle": "Using CSS Grid for complex layouts.",
+    "completionDate": "July 28, 2026",
+    "difficulty": "Hard",
+    "estimatedTime": "3 hours",
+    "whatILearned": "Mastered CSS grid areas and responsive grid templates. Built the main dashboard structure that holds the activity grid and side panels.",
+    "learningObjectives": [
+      "Understand grid-template-columns and rows",
+      "Use gap and fr units effectively",
+      "Make grids responsive without media queries using auto-fit"
+    ],
+    "resources": [
+      "A Complete Guide to Grid"
+    ],
+    "tags": ["CSS Grid", "Layout", "Responsive"],
+    "githubUrl": "https://github.com/builder/abtalks-challenge/commit/3y4z5a",
+    "linkedinUrl": "https://linkedin.com/posts/builder/day-9-abtalks..."
+  },
+  {
+    "day": 10,
+    "title": "Interactive Data Visualizations",
+    "subtitle": "Building the 60-Day Activity Grid.",
+    "completionDate": "July 29, 2026",
+    "difficulty": "Hard",
+    "estimatedTime": "4 hours",
+    "whatILearned": "Created a highly interactive component that maps status states to CSS variables. Handled hover states, click events, and dynamic rendering based on complex logic.",
+    "learningObjectives": [
+      "Render a grid of dynamic data",
+      "Manage complex state for interactive elements",
+      "Ensure accessible contrast for all state colors"
+    ],
+    "resources": [
+      "Building accessible data grids"
+    ],
+    "tags": ["Interactive", "Data Viz", "Logic"],
+    "githubUrl": "https://github.com/builder/abtalks-challenge/commit/6b7c8d",
+    "linkedinUrl": "https://linkedin.com/posts/builder/day-10-abtalks..."
+  },
+  {
+    "day": 11,
+    "title": "Polishing & Refactoring",
+    "subtitle": "Cleaning up tech debt before the next big feature.",
+    "completionDate": "July 30, 2026",
+    "difficulty": "Medium",
+    "estimatedTime": "2.5 hours",
+    "whatILearned": "Took a step back to review code from days 1-10. Extracted hardcoded strings, optimized images, and fixed a few responsive layout bugs on mobile devices.",
+    "learningObjectives": [
+      "Identify and eliminate code duplication",
+      "Optimize assets for performance",
+      "Perform cross-browser and mobile testing"
+    ],
+    "resources": [
+      "Refactoring Guru",
+      "Next.js Image Component"
+    ],
+    "tags": ["Refactoring", "Performance", "Testing"],
+    "githubUrl": "https://github.com/builder/abtalks-challenge/commit/9e0f1g",
+    "linkedinUrl": "https://linkedin.com/posts/builder/day-11-abtalks..."
+  }
+]
