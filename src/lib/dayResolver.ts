@@ -21,6 +21,13 @@ export interface DayData {
   linkedinUrl?: string;
   checklist?: { id: string; label: string; checked: boolean }[];
   completionDate?: string;
+  tutorialVideo?: {
+    title: string;
+    youtubeUrl: string;
+    youtubeId: string;
+    channel: string;
+    description: string;
+  };
 }
 
 export function getDayById(id: number): DayData | null {
@@ -38,6 +45,7 @@ export function getDayById(id: number): DayData | null {
       objective: day12Data.objective,
       estimatedTime: day12Data.estimatedTime,
       difficulty: "Medium", // Or fetch from somewhere else if needed
+      tutorialVideo: day12Data.tutorialVideo,
       checklist: day12Data.checklist,
       tags: day12Data.skills,
       learningObjectives: [], // We can fill these based on requirements

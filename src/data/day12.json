@@ -5,6 +5,13 @@
   "objective": "Create a fully responsive developer portfolio layout with sections for hero, about, skills, and projects.",
   "estimatedTime": "45–60 min",
   "skills": ["HTML", "CSS", "Responsive Design"],
+  "tutorialVideo": {
+    "title": "Build a Responsive Developer Portfolio",
+    "youtubeUrl": "https://www.youtube.com/watch?v=JkYXvZaEp7Q",
+    "youtubeId": "JkYXvZaEp7Q",
+    "channel": "DesignCourse",
+    "description": "Learn how to build a modern, responsive developer portfolio using semantic HTML and custom CSS. This tutorial perfectly covers today's core requirements."
+  },
   "checklist": [
     {
       "id": "hero",

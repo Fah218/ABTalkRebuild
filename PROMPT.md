@@ -131,3 +131,8 @@ Redesigned the current-day task page into a complete learning-to-submission work
 ## Day 12 — Submission Flow Fix
 
 Fixed Day 12 interactions: functional accordions, Definition of Done checkboxes, optional learning reflection, dynamic GitHub/LinkedIn proof states, confirmation checkbox, and validation-controlled submission button.
+
+
+## Day 12 — Tutorial Video
+
+Added a functional YouTube tutorial section for the Day 12 portfolio task with embedded playback, video metadata, and a direct "Watch on YouTube" link while keeping the existing ABTalks theme and responsive design.

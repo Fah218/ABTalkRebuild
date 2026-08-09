@@ -259,10 +259,49 @@ export default function DayPage() {
                       <ChevronDown size={20} className={`${styles.accordionChevron} ${openAccordion === 'tutorial' ? styles.open : ''}`} />
                     </button>
                     <div className={styles.accordionContent}>
-                      <div style={{ backgroundColor: 'var(--bg-surface-muted)', width: '100%', aspectRatio: '16/9', display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: 'var(--radius-md)', border: '1px solid var(--border-color)', marginBottom: '16px' }}>
-                        <MonitorPlay size={48} color="var(--text-muted)" opacity={0.5} />
-                      </div>
-                      Watch the walkthrough before you build. This covers the main concepts needed to complete today's task.
+                      {initialDayData.tutorialVideo ? (
+                        <>
+                          <div style={{ width: '100%', aspectRatio: '16/9', borderRadius: 'var(--radius-md)', overflow: 'hidden', border: '1px solid var(--border-color)', marginBottom: '16px' }}>
+                            <iframe 
+                              width="100%" 
+                              height="100%" 
+                              src={`https://www.youtube.com/embed/${initialDayData.tutorialVideo.youtubeId}`} 
+                              title={initialDayData.tutorialVideo.title} 
+                              frameBorder="0" 
+                              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                              allowFullScreen
+                              style={{ display: 'block' }}
+                            ></iframe>
+                          </div>
+                          <h3 style={{ fontSize: '16px', fontWeight: 700, color: 'var(--text-main)', marginBottom: '4px', fontFamily: 'var(--font-syne), sans-serif' }}>
+                            {initialDayData.tutorialVideo.title}
+                          </h3>
+                          <div style={{ fontSize: '13px', fontWeight: 600, color: 'var(--brand-primary)', marginBottom: '12px' }}>
+                            {initialDayData.tutorialVideo.channel}
+                          </div>
+                          <p style={{ marginBottom: '16px', color: 'var(--text-muted)' }}>
+                            {initialDayData.tutorialVideo.description}
+                          </p>
+                          <a 
+                            href={initialDayData.tutorialVideo.youtubeUrl} 
+                            target="_blank" 
+                            rel="noopener noreferrer"
+                            style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', padding: '10px 16px', backgroundColor: 'var(--bg-surface-muted)', borderRadius: 'var(--radius-full)', fontSize: '13px', fontWeight: 600, color: 'var(--text-main)', textDecoration: 'none', border: '1px solid var(--border-color)', transition: 'background-color 0.2s' }}
+                            onMouseOver={(e) => e.currentTarget.style.backgroundColor = 'var(--border-color)'}
+                            onMouseOut={(e) => e.currentTarget.style.backgroundColor = 'var(--bg-surface-muted)'}
+                          >
+                            <MonitorPlay size={14} /> Watch on YouTube ↗
+                          </a>
+                        </>
+                      ) : (
+                        <>
+                          <div style={{ backgroundColor: 'var(--bg-surface-muted)', width: '100%', aspectRatio: '16/9', display: 'flex', flexDirection: 'column', gap: '12px', alignItems: 'center', justifyContent: 'center', borderRadius: 'var(--radius-md)', border: '1px solid var(--border-color)', marginBottom: '16px' }}>
+                            <MonitorPlay size={48} color="var(--text-muted)" opacity={0.5} />
+                            <span style={{ fontSize: '15px', fontWeight: 600, color: 'var(--text-muted)' }}>Tutorial coming soon</span>
+                          </div>
+                          Watch the walkthrough before you build. This covers the main concepts needed to complete today's task.
+                        </>
+                      )}
                     </div>
                   </div>
 
