@@ -561,9 +561,9 @@ export default function DayPage() {
             {isCompletedPast && (
               <section className={styles.journalSection} style={{ marginTop: "8px", marginBottom: "32px" }}>
                 <h2 className={styles.sectionHeader}>Build Record</h2>
-                <div style={{ display: "flex", gap: "24px", color: "var(--text-muted)", fontSize: "0.95rem" }}>
-                  <div style={{ display: "flex", alignItems: "center", gap: "6px" }}><CheckCircle2 size={16} color="var(--brand-success)" /> <strong>Completed:</strong> {initialDayData.completionDate}</div>
-                  <div style={{ display: "flex", alignItems: "center", gap: "6px" }}><Clock size={16} /> <strong>Duration:</strong> {initialDayData.estimatedTime}</div>
+                <div className={styles.buildRecordMeta}>
+                  <div className={styles.buildRecordMetaItem}><CheckCircle2 size={16} color="var(--brand-success)" /> <strong>Completed:</strong> {initialDayData.completionDate}</div>
+                  <div className={styles.buildRecordMetaItem}><Clock size={16} /> <strong>Duration:</strong> {initialDayData.estimatedTime}</div>
                 </div>
               </section>
             )}
