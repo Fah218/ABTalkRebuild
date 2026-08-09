@@ -3,7 +3,7 @@
 
 import React, { useState, useMemo } from "react";
 import Link from "next/link";
-import { Clock, Code2, Briefcase, Trophy, Zap, ArrowRight, Search, CheckCircle2, AlertCircle, Calendar } from "lucide-react";
+import { Clock, Code2, Briefcase, Trophy, Zap, ArrowRight, Search, CheckCircle2, AlertCircle, Calendar, Lock } from "lucide-react";
 import { Header } from "@/components/shared/Header";
 import styles from "./page.module.css";
 import studentData from "@/data/student.json";
@@ -42,6 +42,40 @@ export default function DashboardPage() {
   const searchedBuilds = searchQuery 
     ? history.filter(d => ["completed", "today", "missed", "catchup"].includes(d.status) && d.title.toLowerCase().includes(searchQuery.toLowerCase()))
     : recentBuilds;
+
+  const milestonesWithState = useMemo(() => {
+    const milestonesList = [
+      { id: 'first-week', title: 'First Week', description: 'Completed 7 days', target: 7, type: 'builds', icon: <Trophy size={18} /> },
+      { id: '10-builds', title: '10 Builds Shipped', description: 'Shipped 10 builds', target: 10, type: 'builds', icon: <Zap size={18} /> },
+      { id: '14-streak', title: '14 Day Streak', description: 'Maintained a 14-day streak', target: 14, type: 'streak', icon: <Calendar size={18} /> },
+      { id: '25-builds', title: '25 Builds Shipped', description: 'Shipped 25 builds', target: 25, type: 'builds', icon: <Briefcase size={18} /> },
+      { id: '30-builds', title: '30 Day Builder', description: 'Reached day 30', target: 30, type: 'builds', icon: <Code2 size={18} /> },
+      { id: '60-builds', title: '60 Day Builder', description: 'Completed the full challenge', target: 60, type: 'builds', icon: <Trophy size={18} /> },
+    ];
+
+    let firstUnearnedBuildsFound = false;
+    let firstUnearnedStreakFound = false;
+
+    return milestonesList.map(m => {
+      const current = m.type === 'streak' ? studentData.longestStreak : studentData.progress;
+      
+      if (current >= m.target) {
+        return { ...m, state: 'earned', current };
+      }
+      
+      if (m.type === 'builds' && !firstUnearnedBuildsFound) {
+        firstUnearnedBuildsFound = true;
+        return { ...m, state: 'in-progress', current };
+      }
+      
+      if (m.type === 'streak' && !firstUnearnedStreakFound) {
+        firstUnearnedStreakFound = true;
+        return { ...m, state: 'in-progress', current };
+      }
+      
+      return { ...m, state: 'locked', current };
+    });
+  }, []);
 
   const renderJournalContent = () => {
     if (!selectedDayData) return null;
@@ -308,14 +342,34 @@ export default function DashboardPage() {
           <section className={styles.animateSection}>
             <h3 className={styles.sectionTitle}>Milestones</h3>
             <div className={styles.itemList}>
-              {studentData.achievements.map((achievement) => (
-                <div key={achievement.id} className={styles.listItem}>
-                  <div className={styles.listItemIcon}>
-                    {achievement.icon === "Trophy" ? <Trophy size={18} /> : <Zap size={18} />}
+              {milestonesWithState.map((milestone) => (
+                <div key={milestone.id} className={`${styles.milestoneItem} ${
+                  milestone.state === 'earned' ? styles.milestoneEarned : 
+                  milestone.state === 'in-progress' ? styles.milestoneInProgress : styles.milestoneLocked
+                }`}>
+                  <div className={styles.milestoneIcon}>
+                    {milestone.icon}
                   </div>
-                  <div className={styles.listContent}>
-                    <div className={styles.listTitle}>{achievement.title}</div>
-                    <div className={styles.listDesc}>{achievement.description}</div>
+                  <div className={styles.milestoneContent}>
+                    <div className={styles.milestoneHeader}>
+                      <div className={styles.milestoneTitle}>{milestone.title}</div>
+                      {milestone.state === 'earned' && <CheckCircle2 size={16} className={styles.milestoneStatusIcon} />}
+                      {milestone.state === 'locked' && <Lock size={14} style={{ color: 'var(--text-muted)' }} />}
+                    </div>
+                    
+                    {milestone.state === 'in-progress' ? (
+                      <div className={styles.milestoneProgressRow}>
+                        <div className={styles.milestoneProgressBar}>
+                          <div 
+                            className={styles.milestoneProgressFill} 
+                            style={{ width: `${Math.min(100, Math.round((milestone.current / milestone.target) * 100))}%` }} 
+                          />
+                        </div>
+                        <div className={styles.milestoneProgressText}>{milestone.current} / {milestone.target}</div>
+                      </div>
+                    ) : (
+                      <div className={styles.milestoneDesc}>{milestone.description}</div>
+                    )}
                   </div>
                 </div>
               ))}

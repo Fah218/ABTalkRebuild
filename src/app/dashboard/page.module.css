@@ -532,3 +532,107 @@
   width: 48px;
   flex-shrink: 0;
 }
+
+/* Milestones */
+.milestoneItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 16px;
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.milestoneEarned {
+  border-color: rgba(var(--brand-success-rgb), 0.3);
+  background-color: rgba(var(--brand-success-rgb), 0.03);
+}
+.milestoneEarned .milestoneIcon {
+  color: var(--brand-success);
+  background-color: rgba(var(--brand-success-rgb), 0.15);
+}
+
+.milestoneInProgress {
+  border-color: var(--border-active);
+}
+.milestoneInProgress .milestoneIcon {
+  color: var(--text-main);
+  background-color: var(--bg-surface-muted);
+}
+
+.milestoneLocked {
+  opacity: 0.6;
+}
+.milestoneLocked .milestoneIcon {
+  color: var(--text-muted);
+  background-color: var(--bg-surface-muted);
+}
+
+.milestoneIcon {
+  padding: 10px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.milestoneContent {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 1;
+}
+
+.milestoneHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.milestoneTitle {
+  font-family: var(--font-syne), "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text-main);
+  letter-spacing: -0.01em;
+}
+
+.milestoneDesc {
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+.milestoneStatusIcon {
+  color: var(--brand-success);
+}
+
+.milestoneProgressRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 4px;
+}
+
+.milestoneProgressBar {
+  flex: 1;
+  height: 6px;
+  background-color: var(--border-color);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+}
+
+.milestoneProgressFill {
+  height: 100%;
+  background-color: var(--brand-primary);
+  border-radius: var(--radius-full);
+}
+
+.milestoneProgressText {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-muted);
+  white-space: nowrap;
+}

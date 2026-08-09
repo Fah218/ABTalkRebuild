@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useEffect, useState, useRef } from "react";
+import Link from "next/link";
 import styles from "./JourneyVisualization.module.css";
 
 export function JourneyVisualization() {
@@ -26,11 +27,36 @@ export function JourneyVisualization() {
   }, []);
 
   const milestones = [
-    { day: "01", progressTrigger: 0 },
-    { day: "15", progressTrigger: 25 },
-    { day: "30", progressTrigger: 50 },
-    { day: "45", progressTrigger: 75 },
-    { day: "60", progressTrigger: 100 },
+    { 
+      day: "01", 
+      progressTrigger: 0,
+      topic: "Setup & Mindset",
+      description: "Configuring the environment and committing to 60 days of shipping."
+    },
+    { 
+      day: "15", 
+      progressTrigger: 25,
+      topic: "Component Architecture",
+      description: "Building reusable, accessible UI elements and managing state."
+    },
+    { 
+      day: "30", 
+      progressTrigger: 50,
+      topic: "Data Fetching & APIs",
+      description: "Connecting to backends, handling loading states, and mutating data."
+    },
+    { 
+      day: "45", 
+      progressTrigger: 75,
+      topic: "Performance & Polish",
+      description: "Mastering Core Web Vitals, dynamic imports, and optimizations."
+    },
+    { 
+      day: "60", 
+      progressTrigger: 100,
+      topic: "The Final Build",
+      description: "Shipping a complete, production-ready full-stack application."
+    },
   ];
 
   return (
@@ -39,20 +65,26 @@ export function JourneyVisualization() {
       
       <div className={styles.timeline}>
         <div className={styles.timelineLine} />
-        <div className={styles.timelineProgress} style={{ width: `${progress}%` }} />
+        <div className={styles.timelineProgress} style={{ '--progress': `${progress}%` } as React.CSSProperties} />
         
         {milestones.map((m) => {
           const isActive = progress >= m.progressTrigger;
-          const isHighlight = progress === m.progressTrigger; // Optional subtle effect
+          const isHighlight = progress === m.progressTrigger;
           
           return (
-            <div 
+            <Link 
               key={m.day} 
+              href={`/day/${parseInt(m.day, 10)}`}
               className={`${styles.milestone} ${isActive ? styles.active : ""} ${isHighlight ? styles.highlight : ""}`}
+              style={{ textDecoration: 'none' }}
             >
               <div className={styles.milestoneNode} />
-              <div className={`${styles.milestoneLabel} font-heading`}>DAY {m.day}</div>
-            </div>
+              <div className={styles.milestoneContent}>
+                <div className={`${styles.milestoneLabel} font-heading`}>DAY {m.day}</div>
+                <div className={`${styles.milestoneTopic} font-heading`}>{m.topic}</div>
+                <div className={styles.milestoneDesc}>{m.description}</div>
+              </div>
+            </Link>
           );
         })}
       </div>

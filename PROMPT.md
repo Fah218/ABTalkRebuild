@@ -103,3 +103,19 @@ Update all `/day/[id]` pages.
 - Preserve all existing day-status logic and functionality.
 - Ensure the design remains responsive at 390px.
 - Verify `/day/1`, `/day/10`, `/day/11`, `/day/12`, and an upcoming day.
+
+
+
+Improve Dashboard Milestones.
+
+- Add meaningful milestones: First Week, 10 Builds Shipped, 14 Day Streak, 25 Builds Shipped, 30 Day Builder, 60 Day Builder.
+- Dynamically show Earned, In Progress, and Locked states from real user progress.
+- Add icons, short descriptions, checks, and subtle progress bars.
+- Keep ABTalks professional and portfolio-focused, not childish gamification.
+- Use existing theme, Syne + Manrope typography, and dashboard design.
+- Keep responsive and don't modify unrelated functionality.
+
+
+## Home — 60-Day Journey
+
+Enhanced the 60-Day Journey with concise chapter/topic previews under each milestone (Day 01, 15, 30, 45, 60), using challenge data and clickable day navigation while preserving the existing timeline, theme, typography, and 390px mobile-first design.

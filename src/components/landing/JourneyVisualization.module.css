@@ -17,44 +17,86 @@
 
 .timeline {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  flex-direction: column;
   position: relative;
   max-width: 100%;
-  padding: 20px 0;
+  padding: 20px 0 20px 32px;
+  gap: 32px;
+}
+
+@media (min-width: 768px) {
+  .timeline {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 20px 0;
+    gap: 16px;
+  }
 }
 
 .timelineLine {
   position: absolute;
-  top: 50%;
-  left: 0;
-  right: 0;
-  height: 2px;
+  top: 24px;
+  bottom: 24px;
+  left: 7px;
+  width: 2px;
   background: var(--border-color);
   z-index: 1;
-  transform: translateY(-50%);
+}
+
+@media (min-width: 768px) {
+  .timelineLine {
+    top: 28px;
+    left: 0;
+    right: 0;
+    bottom: auto;
+    width: auto;
+    height: 2px;
+  }
 }
 
 .timelineProgress {
   position: absolute;
-  top: 50%;
-  left: 0;
-  width: 0%; /* Will animate */
-  height: 2px;
+  top: 24px;
+  left: 7px;
+  width: 2px;
+  height: var(--progress, 0%);
   background: var(--brand-primary);
   z-index: 2;
-  transform: translateY(-50%);
-  transition: width 1.5s ease-out;
+  transition: height 1.5s ease-out;
+}
+
+@media (min-width: 768px) {
+  .timelineProgress {
+    top: 28px;
+    left: 0;
+    height: 2px;
+    width: var(--progress, 0%);
+    transition: width 1.5s ease-out;
+  }
 }
 
 .milestone {
   position: relative;
   z-index: 3;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 8px;
+  align-items: flex-start;
+  gap: 24px;
   transition: transform 0.3s ease;
+  cursor: pointer;
+  width: 100%;
+}
+.milestone:hover {
+  transform: translateY(-2px);
+}
+
+@media (min-width: 768px) {
+  .milestone {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 18%;
+  }
 }
 
 .milestoneNode {
@@ -64,6 +106,16 @@
   background: var(--bg-surface);
   border: 2px solid var(--border-color);
   transition: all 0.3s ease;
+  flex-shrink: 0;
+  margin-left: -32px;
+  margin-top: 4px;
+}
+
+@media (min-width: 768px) {
+  .milestoneNode {
+    margin-left: 0;
+    margin-top: 0;
+  }
 }
 
 .milestone.active .milestoneNode {
@@ -76,16 +128,36 @@
   transform: scale(1.5);
 }
 
-.milestoneLabel {
-  font-size: 14px;
-  font-weight: 700;
-  color: var(--text-muted);
-  text-transform: uppercase;
-  transition: color 0.3s ease;
+.milestoneContent {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
 }
 
+.milestoneLabel {
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  transition: color 0.3s ease;
+}
 .milestone.active .milestoneLabel {
   color: var(--brand-primary);
+}
+
+.milestoneTopic {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text-main);
+  line-height: 1.3;
+}
+
+.milestoneDesc {
+  font-size: 13px;
+  color: var(--text-muted);
+  line-height: 1.4;
+  margin-top: 2px;
 }
 
 .message {
