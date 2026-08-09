@@ -201,3 +201,9 @@ Improved light-theme text contrast and readability across the home page while pr
 ## Light Theme Readability
 
 Improved light-theme text contrast and readability across the Dashboard and Day 1–12 challenge pages while preserving the existing visual hierarchy.
+
+
+
+## Global Footer
+
+Added a responsive ABTalks footer with branding, a professional quote, and social media icons.
