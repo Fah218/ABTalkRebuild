@@ -22,13 +22,20 @@ export default function DayPage() {
   const dayId = parseInt(params?.id as string, 10);
   
   const initialDayData = getDayById(dayId);
-  
+  const status = initialDayData?.status;
+  const isUpcoming = status === "upcoming";
+  const isToday = status === "today";
+  const isCatchup = status === "catchup";
+  const isMissed = status === "missed";
+  const isCompletedPast = status === "completed";
+
   // States
   const [checklist, setChecklist] = useState<{id: string, label: string, checked: boolean}[]>([]);
   const [githubUrl, setGithubUrl] = useState("");
   const [githubCommit, setGithubCommit] = useState("");
   const [linkedinUrl, setLinkedinUrl] = useState("");
   const [whatILearnedInput, setWhatILearnedInput] = useState("");
+  const [reflectionSaved, setReflectionSaved] = useState(false);
   const [isConfirmed, setIsConfirmed] = useState(false);
   const [openAccordion, setOpenAccordion] = useState<string | null>("task");
   const [isCompleted, setIsCompleted] = useState(false);
@@ -62,6 +69,16 @@ export default function DayPage() {
   const linkedinReady = linkedinUrl.length > 10;
   const canComplete = allChecked && githubReady && linkedinReady && isConfirmed;
 
+  let missingRequirements = [];
+  if (!allChecked) missingRequirements.push("Definition of Done");
+  if (!githubReady) missingRequirements.push("GitHub Proof");
+  if (!linkedinReady) missingRequirements.push("LinkedIn Proof");
+  if (!isConfirmed) missingRequirements.push("Confirmation");
+
+  const submitText = canComplete 
+    ? (isCatchup ? `Catch Up & Submit` : `Submit Day ${dayId}`) 
+    : `Missing: ${missingRequirements.join(", ")}`;
+
   const handleComplete = () => {
     if (canComplete) {
       setIsCompleted(true);
@@ -82,14 +99,6 @@ export default function DayPage() {
       </>
     );
   }
-
-  const { status } = initialDayData;
-  const isUpcoming = status === "upcoming";
-  const isToday = status === "today";
-  const isCatchup = status === "catchup";
-  const isMissed = status === "missed";
-  const isCompletedPast = status === "completed";
-
   if (isUpcoming) {
     return (
       <>
@@ -325,7 +334,7 @@ export default function DayPage() {
                     className={`${styles.checklistItem} ${item.checked ? styles.checked : ''}`}
                     onClick={() => handleToggleCheck(item.id)}
                   >
-                    <Checkbox checked={item.checked} readOnly />
+                    <Checkbox checked={item.checked} readOnly style={{ pointerEvents: 'none' }} />
                     <span className={styles.checklistLabel}>{item.label}</span>
                   </div>
                 ))}
@@ -338,12 +347,33 @@ export default function DayPage() {
                   What did you learn?
                   <span className={styles.optionalTag}>Optional</span>
                 </label>
-                <textarea 
-                  className={styles.reflectionTextarea}
-                  placeholder="Briefly describe what you learned or what you improved while completing today's build..."
-                  value={whatILearnedInput}
-                  onChange={(e) => setWhatILearnedInput(e.target.value)}
-                />
+                {!reflectionSaved ? (
+                  <>
+                    <textarea 
+                      className={styles.reflectionTextarea}
+                      placeholder="Briefly describe what you learned or what you improved while completing today's build..."
+                      value={whatILearnedInput}
+                      onChange={(e) => setWhatILearnedInput(e.target.value)}
+                    />
+                    {whatILearnedInput.trim().length > 0 && (
+                      <Button variant="secondary" onClick={() => setReflectionSaved(true)} style={{ marginTop: '12px', padding: '8px 12px', fontSize: '13px' }}>
+                        Save reflection
+                      </Button>
+                    )}
+                  </>
+                ) : (
+                  <div style={{ backgroundColor: 'rgba(var(--brand-success-rgb), 0.05)', border: '1px solid rgba(var(--brand-success-rgb), 0.3)', padding: '16px', borderRadius: 'var(--radius-md)', color: 'var(--text-main)', fontSize: '14px', position: 'relative' }}>
+                    <div style={{ position: 'absolute', top: '16px', right: '16px', color: 'var(--brand-success)' }}>
+                      <CheckCircle2 size={16} />
+                    </div>
+                    <p style={{ margin: 0, paddingRight: '24px' }}>{whatILearnedInput}</p>
+                    <div style={{ marginTop: '12px' }}>
+                      <button onClick={() => setReflectionSaved(false)} style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 0, fontSize: '12px', color: 'var(--text-muted)' }}>
+                        Edit reflection
+                      </button>
+                    </div>
+                  </div>
+                )}
               </div>
             </section>
 
@@ -375,7 +405,7 @@ export default function DayPage() {
                     </div>
                     <div className={`${styles.proofStatusNeutral} ${githubReady ? styles.verified : ''}`}>
                       {githubReady ? <CheckCircle2 size={16} /> : <Circle size={16} />}
-                      {githubReady ? "Repository connected" : "Repository not connected yet"}
+                      {githubReady ? "Repository proof ready" : (githubUrl.length > 10 ? "Repository link added" : "Repository not connected yet")}
                     </div>
                   </div>
                 </div>
@@ -400,7 +430,7 @@ export default function DayPage() {
                     </div>
                     <div className={`${styles.proofStatusNeutral} ${linkedinReady ? styles.verified : ''}`}>
                       {linkedinReady ? <CheckCircle2 size={16} /> : <Circle size={16} />}
-                      {linkedinReady ? "Post connected" : "Post not connected yet"}
+                      {linkedinReady ? "LinkedIn post added" : "Post not connected yet"}
                     </div>
                   </div>
                 </div>
@@ -408,10 +438,10 @@ export default function DayPage() {
                 <div className={styles.proofDivider} />
 
                 <div 
-                  className={styles.confirmBox}
+                  className={`${styles.confirmBox} ${isConfirmed ? styles.checked : ''}`}
                   onClick={() => setIsConfirmed(!isConfirmed)}
                 >
-                  <Checkbox checked={isConfirmed} readOnly />
+                  <Checkbox checked={isConfirmed} readOnly style={{ pointerEvents: 'none', marginTop: '2px' }} />
                   <div className={styles.confirmLabel}>I confirm that I have completed today's task.</div>
                 </div>
 
@@ -421,7 +451,7 @@ export default function DayPage() {
                     disabled={!canComplete}
                     onClick={handleComplete}
                   >
-                    {canComplete ? (isCatchup ? `Catch Up & Submit` : `Submit Day ${dayId}`) : "Finish requirements to submit"}
+                    {submitText}
                   </button>
                 </div>
               </div>

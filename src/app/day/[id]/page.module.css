@@ -457,6 +457,7 @@
 }
 
 .accordionContent {
+  display: none;
   padding: 0 16px 16px;
   font-size: 14px;
   line-height: 1.6;
@@ -464,6 +465,7 @@
   border-top: 1px solid transparent;
 }
 .accordionItem.open .accordionContent {
+  display: block;
   border-top-color: var(--border-color);
   padding-top: 16px;
 }
@@ -573,7 +575,15 @@
   align-items: flex-start;
   gap: 12px;
   padding: 24px;
+  background-color: var(--bg-surface);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.confirmBox:hover {
   background-color: var(--bg-surface-muted);
+}
+.confirmBox.checked {
+  background-color: rgba(var(--brand-success-rgb), 0.05);
 }
 .confirmLabel {
   font-size: 14px;
@@ -581,7 +591,6 @@
   color: var(--text-main);
   line-height: 1.4;
   margin-top: -2px;
-  cursor: pointer;
 }
 
 .submitAction {
