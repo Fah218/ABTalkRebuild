@@ -16,9 +16,14 @@
       "Next.js Getting Started Guide",
       "GitHub documentation for beginners"
     ],
-    "tags": ["Setup", "Mindset", "Git"],
+    "tags": [
+      "Setup",
+      "Mindset",
+      "Git"
+    ],
     "githubUrl": "https://github.com/builder/abtalks-challenge/commit/1a2b3c",
-    "linkedinUrl": "https://linkedin.com/posts/builder/day-1-abtalks..."
+    "linkedinUrl": "https://linkedin.com/posts/builder/day-1-abtalks...",
+    "status": "completed"
   },
   {
     "day": 2,
@@ -37,9 +42,14 @@
       "Figma to CSS best practices",
       "Next.js Font Optimization"
     ],
-    "tags": ["Design", "CSS", "UI/UX"],
+    "tags": [
+      "Design",
+      "CSS",
+      "UI/UX"
+    ],
     "githubUrl": "https://github.com/builder/abtalks-challenge/commit/2d3e4f",
-    "linkedinUrl": "https://linkedin.com/posts/builder/day-2-abtalks..."
+    "linkedinUrl": "https://linkedin.com/posts/builder/day-2-abtalks...",
+    "status": "completed"
   },
   {
     "day": 3,
@@ -58,9 +68,14 @@
       "A Complete Guide to Flexbox",
       "Web.dev Accessibility Basics"
     ],
-    "tags": ["Frontend", "Animation", "Responsive"],
+    "tags": [
+      "Frontend",
+      "Animation",
+      "Responsive"
+    ],
     "githubUrl": "https://github.com/builder/abtalks-challenge/commit/5g6h7i",
-    "linkedinUrl": "https://linkedin.com/posts/builder/day-3-abtalks..."
+    "linkedinUrl": "https://linkedin.com/posts/builder/day-3-abtalks...",
+    "status": "completed"
   },
   {
     "day": 4,
@@ -79,9 +94,14 @@
       "Next.js Routing Documentation",
       "React Server Components explained"
     ],
-    "tags": ["Next.js", "Architecture", "React"],
+    "tags": [
+      "Next.js",
+      "Architecture",
+      "React"
+    ],
     "githubUrl": "https://github.com/builder/abtalks-challenge/commit/8j9k0l",
-    "linkedinUrl": "https://linkedin.com/posts/builder/day-4-abtalks..."
+    "linkedinUrl": "https://linkedin.com/posts/builder/day-4-abtalks...",
+    "status": "completed"
   },
   {
     "day": 5,
@@ -99,9 +119,14 @@
     "resources": [
       "React Docs: Managing State"
     ],
-    "tags": ["React", "State", "Hooks"],
+    "tags": [
+      "React",
+      "State",
+      "Hooks"
+    ],
     "githubUrl": "https://github.com/builder/abtalks-challenge/commit/1m2n3o",
-    "linkedinUrl": "https://linkedin.com/posts/builder/day-5-abtalks..."
+    "linkedinUrl": "https://linkedin.com/posts/builder/day-5-abtalks...",
+    "status": "completed"
   },
   {
     "day": 6,
@@ -120,9 +145,14 @@
       "Next.js Hydration troubleshooting",
       "CSS prefers-color-scheme"
     ],
-    "tags": ["Context", "CSS Variables", "UX"],
+    "tags": [
+      "Context",
+      "CSS Variables",
+      "UX"
+    ],
     "githubUrl": "https://github.com/builder/abtalks-challenge/commit/4p5q6r",
-    "linkedinUrl": "https://linkedin.com/posts/builder/day-6-abtalks..."
+    "linkedinUrl": "https://linkedin.com/posts/builder/day-6-abtalks...",
+    "status": "completed"
   },
   {
     "day": 7,
@@ -140,9 +170,14 @@
     "resources": [
       "TypeScript for React Developers"
     ],
-    "tags": ["Components", "TypeScript", "Refactoring"],
+    "tags": [
+      "Components",
+      "TypeScript",
+      "Refactoring"
+    ],
     "githubUrl": "https://github.com/builder/abtalks-challenge/commit/7s8t9u",
-    "linkedinUrl": "https://linkedin.com/posts/builder/day-7-abtalks..."
+    "linkedinUrl": "https://linkedin.com/posts/builder/day-7-abtalks...",
+    "status": "completed"
   },
   {
     "day": 8,
@@ -160,9 +195,14 @@
     "resources": [
       "JSON structure best practices"
     ],
-    "tags": ["Data", "JSON", "Architecture"],
+    "tags": [
+      "Data",
+      "JSON",
+      "Architecture"
+    ],
     "githubUrl": "https://github.com/builder/abtalks-challenge/commit/0v1w2x",
-    "linkedinUrl": "https://linkedin.com/posts/builder/day-8-abtalks..."
+    "linkedinUrl": "https://linkedin.com/posts/builder/day-8-abtalks...",
+    "status": "completed"
   },
   {
     "day": 9,
@@ -180,15 +220,20 @@
     "resources": [
       "A Complete Guide to Grid"
     ],
-    "tags": ["CSS Grid", "Layout", "Responsive"],
+    "tags": [
+      "CSS Grid",
+      "Layout",
+      "Responsive"
+    ],
     "githubUrl": "https://github.com/builder/abtalks-challenge/commit/3y4z5a",
-    "linkedinUrl": "https://linkedin.com/posts/builder/day-9-abtalks..."
+    "linkedinUrl": "https://linkedin.com/posts/builder/day-9-abtalks...",
+    "status": "completed"
   },
   {
     "day": 10,
     "title": "Interactive Data Visualizations",
     "subtitle": "Building the 60-Day Activity Grid.",
-    "completionDate": "July 29, 2026",
+    "completionDate": "",
     "difficulty": "Hard",
     "estimatedTime": "4 hours",
     "whatILearned": "Created a highly interactive component that maps status states to CSS variables. Handled hover states, click events, and dynamic rendering based on complex logic.",
@@ -200,15 +245,20 @@
     "resources": [
       "Building accessible data grids"
     ],
-    "tags": ["Interactive", "Data Viz", "Logic"],
-    "githubUrl": "https://github.com/builder/abtalks-challenge/commit/6b7c8d",
-    "linkedinUrl": "https://linkedin.com/posts/builder/day-10-abtalks..."
+    "tags": [
+      "Interactive",
+      "Data Viz",
+      "Logic"
+    ],
+    "githubUrl": "",
+    "linkedinUrl": "",
+    "status": "missed"
   },
   {
     "day": 11,
     "title": "Polishing & Refactoring",
     "subtitle": "Cleaning up tech debt before the next big feature.",
-    "completionDate": "July 30, 2026",
+    "completionDate": "",
     "difficulty": "Medium",
     "estimatedTime": "2.5 hours",
     "whatILearned": "Took a step back to review code from days 1-10. Extracted hardcoded strings, optimized images, and fixed a few responsive layout bugs on mobile devices.",
@@ -221,8 +271,40 @@
       "Refactoring Guru",
       "Next.js Image Component"
     ],
-    "tags": ["Refactoring", "Performance", "Testing"],
-    "githubUrl": "https://github.com/builder/abtalks-challenge/commit/9e0f1g",
-    "linkedinUrl": "https://linkedin.com/posts/builder/day-11-abtalks..."
+    "tags": [
+      "Refactoring",
+      "Performance",
+      "Testing"
+    ],
+    "githubUrl": "",
+    "linkedinUrl": "",
+    "status": "catchup",
+    "checklist": [
+      {
+        "id": "refactor",
+        "label": "Identify and eliminate code duplication",
+        "checked": false
+      },
+      {
+        "id": "optimize",
+        "label": "Optimize assets for performance",
+        "checked": false
+      },
+      {
+        "id": "test",
+        "label": "Perform cross-browser and mobile testing",
+        "checked": false
+      },
+      {
+        "id": "github",
+        "label": "GitHub repository updated",
+        "checked": false
+      },
+      {
+        "id": "linkedin",
+        "label": "LinkedIn post published",
+        "checked": false
+      }
+    ]
   }
 ]

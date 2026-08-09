@@ -4,9 +4,9 @@
   "currentDay": 12,
   "currentStreak": 11,
   "longestStreak": 11,
-  "completedDays": 11,
-  "missedDays": 0,
-  "progress": 11,
+  "completedDays": 9,
+  "missedDays": 1,
+  "progress": 9,
   "achievements": [
     {
       "id": "first-7",

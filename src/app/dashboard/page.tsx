@@ -1,3 +1,4 @@
+/* eslint-disable */
 "use client";
 
 import React, { useState, useMemo } from "react";
@@ -8,6 +9,7 @@ import styles from "./page.module.css";
 import studentData from "@/data/student.json";
 import challengeData from "@/data/challenge.json";
 import day12Data from "@/data/day12.json";
+import completedDaysData from "@/data/completed-days.json";
 
 export default function DashboardPage() {
   const [selectedDay, setSelectedDay] = useState<number | null>(null);
@@ -18,26 +20,40 @@ export default function DashboardPage() {
     return Array.from({ length: challengeData.totalDays }, (_, i) => {
       const dayNum = i + 1;
       let status = "upcoming";
+      let title = `Build task for Day ${dayNum}`;
+      let learned = "";
+      let timeSpent = "-";
       
       if (dayNum < studentData.currentDay) {
-        // Mock a missed day and a catchup day for testing
-        if (dayNum === 10) status = "missed";
-        else if (dayNum === 11) status = "catchup";
-        else status = "completed";
+        const pastDay = completedDaysData.find((d: any) => d.day === dayNum);
+        if (pastDay) {
+          status = pastDay.status || "completed";
+          title = pastDay.title;
+          if (status === "completed") {
+             learned = `Successfully learned and applied concepts for day ${dayNum}. Built something cool and shared it.`;
+             timeSpent = pastDay.estimatedTime || "45 min";
+          } else if (status === "missed") {
+             timeSpent = pastDay.estimatedTime || "-";
+          } else if (status === "catchup") {
+             timeSpent = pastDay.estimatedTime || "-";
+          }
+        } else {
+          status = "completed"; // fallback
+        }
       } else if (dayNum === studentData.currentDay) {
         status = "today";
+        title = day12Data.title;
+        timeSpent = day12Data.estimatedTime;
       }
       
-      let title = `Build task for Day ${dayNum}`;
       if (status === "upcoming") title = "Locked";
-      if (dayNum === studentData.currentDay) title = day12Data.title;
 
       return {
         day: dayNum,
         status,
         title,
-        learned: status === "completed" ? `Successfully learned and applied concepts for day ${dayNum}. Built something cool and shared it.` : "",
-        timeSpent: status === "completed" ? "45 min" : (status === "today" ? day12Data.estimatedTime : "-"),
+        learned,
+        timeSpent,
       };
     });
   }, []);

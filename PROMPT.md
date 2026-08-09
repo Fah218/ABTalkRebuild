@@ -68,3 +68,9 @@ Unified `/dashboard` with the landing page's Syne + Manrope typography system an
 ## Completed Day Routing & Data
 
 Fixed dynamic completed-day routing so Days 1–11 load their own day-specific content instead of incorrectly rendering the Day 12 challenge. Added proper completed/read-only states while preserving the existing Day 12 experience and shared day-page architecture.
+
+
+
+## Missed & Catch-Up Day Flow
+
+Added state-aware completed, missed, and catch-up day experiences with correct proof handling, actionable catch-up flow, and synchronized dashboard day statuses.
