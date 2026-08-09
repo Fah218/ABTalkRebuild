@@ -68,19 +68,19 @@ export function Footer() {
           </div>
 
           <div className={styles.socialSection}>
-            <a href="#" className={styles.socialIcon} aria-label="LinkedIn">
+            <a href="https://www.linkedin.com/company/abtalks-on-ai/" target="_blank" rel="noopener noreferrer" className={styles.socialIcon} aria-label="LinkedIn">
               <LinkedinIcon size={20} />
             </a>
-            <a href="#" className={styles.socialIcon} aria-label="Instagram">
+            <a href="https://www.instagram.com/abtalksonai" target="_blank" rel="noopener noreferrer" className={styles.socialIcon} aria-label="Instagram">
               <InstagramIcon size={20} />
             </a>
-            <a href="#" className={styles.socialIcon} aria-label="X (Twitter)">
+            <a href="https://x.com/abtalksonai" target="_blank" rel="noopener noreferrer" className={styles.socialIcon} aria-label="X (Twitter)">
               <TwitterIcon size={20} />
             </a>
-            <a href="#" className={styles.socialIcon} aria-label="YouTube">
+            <a href="https://www.youtube.com/@ABTalksOnAI" target="_blank" rel="noopener noreferrer" className={styles.socialIcon} aria-label="YouTube">
               <YoutubeIcon size={20} />
             </a>
-            <a href="#" className={styles.socialIcon} aria-label="Discord">
+            <a href="https://discord.com/invite/j4Q8tvDj6" target="_blank" rel="noopener noreferrer" className={styles.socialIcon} aria-label="Discord">
               <DiscordIcon size={20} />
             </a>
           </div>
