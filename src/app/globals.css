@@ -6,12 +6,12 @@
   --bg-surface-muted: #f2eee3; /* Slightly darker warm gray/cream for visible contrast */
   
   --text-main: #2d3748; /* Charcoal */
-  --text-muted: #718096;
+  --text-muted: #475569; /* Slate 600 - much darker for AA contrast on warm cream */
   
   --brand-primary: #143d2c; /* Deep forest green */
   --brand-primary-rgb: 20, 61, 44;
-  --brand-accent: #85a98f; /* Sage green */
-  --brand-accent-rgb: 133, 169, 143;
+  --brand-accent: #385c45; /* Darker sage/forest for readable text contrast */
+  --brand-accent-rgb: 56, 92, 69;
   --brand-success: #2b7a4b;
   --brand-success-rgb: 43, 122, 75;
   --brand-error: #e53e3e;
@@ -135,9 +135,6 @@ input {
   max-width: 390px; /* Primary design target */
   margin: 0 auto;
   padding: 0 20px;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
 }
 
 @media (min-width: 768px) {

@@ -83,7 +83,7 @@ export default function DayPage() {
     return (
       <>
         <Header />
-        <div className="container" style={{ justifyContent: "center", alignItems: "center", padding: "60px 0" }}>
+        <div className="container" style={{ display: "flex", flexDirection: "column", minHeight: "100vh", justifyContent: "center", alignItems: "center", padding: "60px 0" }}>
           <h2 className="font-heading">Day is not available.</h2>
           <Link href="/dashboard" style={{ marginTop: "24px" }}>
             <Button variant="secondary">Return to Dashboard</Button>
@@ -96,7 +96,7 @@ export default function DayPage() {
     return (
       <>
         <Header />
-        <div className="container" style={{ justifyContent: "center", alignItems: "center", padding: "60px 0" }}>
+        <div className="container" style={{ display: "flex", flexDirection: "column", minHeight: "100vh", justifyContent: "center", alignItems: "center", padding: "60px 0" }}>
           <h2 className="font-heading">Day {dayId} is locked.</h2>
           <p style={{ marginTop: "12px", color: "var(--text-muted)" }}>This task will unlock when it becomes available.</p>
           <Link href="/dashboard" style={{ marginTop: "24px" }}>
@@ -113,7 +113,7 @@ export default function DayPage() {
       return (
         <>
           <Header />
-          <div className="container" style={{ justifyContent: "center", alignItems: "center" }}>
+          <div className="container" style={{ display: "flex", flexDirection: "column", minHeight: "100vh", justifyContent: "center", alignItems: "center" }}>
             <div className={styles.completionSection}>
               <CheckCircle2 size={64} color="var(--brand-success)" />
               <div className={styles.completionMessage}>

@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { Terminal, Menu, X, Sun, Moon } from "lucide-react";
 import { useTheme } from "@/components/ThemeProvider";
+import studentData from "@/data/student.json";
 import styles from "./Header.module.css";
 
 export function Header() {
@@ -67,6 +68,10 @@ export function Header() {
             )}
           </button>
         )}
+        
+        <div className={styles.avatar}>
+          {studentData.initials}
+        </div>
         
         <button className={styles.mobileMenuBtn} onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
           {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}

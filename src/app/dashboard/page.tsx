@@ -213,7 +213,7 @@ export default function DashboardPage() {
           <ArrowLeft size={16} />
           Back to Home
         </Link>
-        <h1 className={styles.greeting}>Good evening, builder.</h1>
+        <h1 className={styles.greeting} style={{ margin: 0, marginBottom: '24px' }}>Good evening, {studentData.firstName}.</h1>
         
         {/* Today's Build Hero */}
         <div className={styles.heroCard}>

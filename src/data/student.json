@@ -1,5 +1,8 @@
 {
-  "name": "Karan Kumar",
+  "firstName": "Kartikey",
+  "lastName": "Patel",
+  "initials": "KP",
+  "name": "Kartikey Patel",
   "track": "Frontend Web Development",
   "currentDay": 12,
   "currentStreak": 11,

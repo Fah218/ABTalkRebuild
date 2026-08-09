@@ -161,3 +161,38 @@ Improve the completed-day journal pages to feel more professional and portfolio-
 
 
 Improve the home page with a professional social-proof section: real product stats, subtle count-up animation, and a smooth horizontally scrolling Builder Voices/testimonials carousel. Add a clear Back to Home navigation on the dashboard. Preserve ABTalks typography, theme, green accent, responsiveness, accessibility, and reduced-motion support. Do not invent real user numbers.
+
+
+
+
+# Home Page Refinement
+
+Refine the ABTalks home page without changing its existing visual identity.
+
+- Order sections: Hero → How It Works → Stats → Builder Voices → 60-Day Journey → CTA.
+- Replace stats with: 60 Days, 60 Daily Builds, 2 Proof Channels, 1 Building Habit.
+- Move Builder Voices after Stats and implement a smooth responsive horizontal carousel.
+- Fix the huge blank space before Builder Voices by finding the actual CSS/layout root cause.
+- Make everything properly responsive at 390px, especially stats and testimonials.
+- Prevent horizontal page overflow and clipped cards.
+- Keep dashboard-only data such as streak/current progress out of the home page.
+- Keep animations subtle and support `prefers-reduced-motion`.
+- Remove duplicate sections, unnecessary heights/spacers, and test the production build.
+
+
+
+
+# Fix Home Page Spacing
+
+Find and fix the root cause of excessive whitespace around the stats and Builder Voices sections. Check parent layout, min-height, padding, margin and gaps. No negative-margin hacks. Keep responsive behavior and prevent testimonial horizontal overflow.
+
+
+
+## Mock Student Identity
+
+Added a mock student identity and initials-based avatar to make the dashboard feel personalized without implementing authentication or real user accounts.
+
+
+## Light Theme Readability
+
+Improved light-theme text contrast and readability across the home page while preserving visual hierarchy and branding.

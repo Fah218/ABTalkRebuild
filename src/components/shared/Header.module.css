@@ -85,6 +85,22 @@
   background-color: var(--bg-surface-muted);
 }
 
+.avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: var(--brand-primary);
+  color: var(--bg-main);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 13px;
+  font-family: var(--font-syne), sans-serif;
+  flex-shrink: 0;
+  user-select: none;
+}
+
 .mobileMenuBtn {
   display: none;
   color: var(--text-main);

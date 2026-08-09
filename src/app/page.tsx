@@ -14,7 +14,7 @@ export default function LandingPage() {
   return (
     <>
       <Header />
-      <div className="container" style={{ minHeight: "auto", display: "block" }}>
+      <div className="container">
         <main>
           <Hero />
           <ProductIntro />
@@ -29,7 +29,7 @@ export default function LandingPage() {
         Full width components or components that handle their own 
         container logic / bleeding background 
       */}
-      <div className="container" style={{ minHeight: "auto", display: "block" }}>
+      <div className="container">
         <JourneyVisualization />
         <BuildProveShare />
         <DayPreview />
