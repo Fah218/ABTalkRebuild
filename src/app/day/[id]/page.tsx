@@ -12,26 +12,19 @@ import { Checkbox } from "@/components/ui/Checkbox";
 import { Input } from "@/components/ui/Input";
 import styles from "./page.module.css";
 
-import studentData from "@/data/student.json";
 import challengeData from "@/data/challenge.json";
-import day12Data from "@/data/day12.json";
-import completedDaysData from "@/data/completed-days.json";
+import studentData from "@/data/student.json";
+import { getDayById } from "@/lib/dayResolver";
 
 export default function DayPage() {
   const params = useParams();
   const dayId = parseInt(params?.id as string, 10);
-
-  const isCurrentDay = dayId === studentData.currentDay;
-  const isCompletedDay = dayId >= 1 && dayId < studentData.currentDay;
-  const isUpcoming = dayId > studentData.currentDay && dayId <= challengeData.totalDays;
-  
-  const completedData: { day: number, status?: string, title?: string, subtitle?: string, completionDate?: string, difficulty?: string, estimatedTime?: string, whatILearned?: string, learningObjectives?: string[], resources?: string[], tags?: string[], githubUrl?: string, linkedinUrl?: string, checklist?: any[] } | null = isCompletedDay ? (completedDaysData.find(d => d.day === dayId) as any) : null;
   
   const [forceCatchup, setForceCatchup] = useState(false);
-  
-  const isCatchup = completedData?.status === "catchup" || forceCatchup;
-  const isMissed = completedData?.status === "missed" && !forceCatchup;
 
+  const initialDayData = getDayById(dayId);
+  
+  // States
   const [checklist, setChecklist] = useState<{id: string, label: string, checked: boolean}[]>([]);
   const [githubUrl, setGithubUrl] = useState("");
   const [githubCommit, setGithubCommit] = useState("");
@@ -39,20 +32,18 @@ export default function DayPage() {
   const [isCompleted, setIsCompleted] = useState(false);
 
   useEffect(() => {
-    // eslint-disable-next-line react-hooks/set-state-in-effect
-    if (isCurrentDay) {
-      setChecklist(day12Data.checklist);
-    } else if (isCatchup && completedData?.checklist) {
-      setChecklist(completedData.checklist);
-    } else if (isCatchup && !completedData?.checklist) {
-      // Fallback checklist if data is missing it
-      setChecklist([
-        { id: '1', label: 'Complete learning objectives', checked: false },
-        { id: 'github', label: 'GitHub repository updated', checked: false },
-        { id: 'linkedin', label: 'LinkedIn post published', checked: false }
-      ]);
+    if (initialDayData && (initialDayData.status === "today" || initialDayData.status === "catchup" || forceCatchup)) {
+      if (initialDayData.checklist) {
+        setChecklist(initialDayData.checklist);
+      } else {
+        setChecklist([
+          { id: '1', label: 'Complete learning objectives', checked: false },
+          { id: 'github', label: 'GitHub repository updated', checked: false },
+          { id: 'linkedin', label: 'LinkedIn post published', checked: false }
+        ]);
+      }
     }
-  }, [isCurrentDay, isCatchup, completedData]);
+  }, [initialDayData, forceCatchup]);
 
   const handleToggleCheck = (id: string) => {
     setChecklist(prev => 
@@ -61,7 +52,7 @@ export default function DayPage() {
   };
 
   const allChecked = checklist.length > 0 && checklist.every(item => item.checked);
-  const githubReady = githubUrl.length > 10 && githubCommit.length > 5;
+  const githubReady = githubUrl.length > 10 && (githubCommit.length > 5 || initialDayData?.status === "catchup"); // commit might not be required if we simplified
   const linkedinReady = linkedinUrl.length > 10;
   const canComplete = allChecked && githubReady && linkedinReady;
 
@@ -72,7 +63,7 @@ export default function DayPage() {
     }
   };
 
-  if (Number.isNaN(dayId) || dayId < 1 || dayId > challengeData.totalDays) {
+  if (!initialDayData) {
     return (
       <div className="container" style={{ justifyContent: "center", alignItems: "center", padding: "60px 0" }}>
         <h2>Day is not available.</h2>
@@ -82,6 +73,13 @@ export default function DayPage() {
       </div>
     );
   }
+
+  const { status } = initialDayData;
+  const isUpcoming = status === "upcoming";
+  const isToday = status === "today";
+  const isCatchup = status === "catchup" || forceCatchup;
+  const isMissed = status === "missed" && !forceCatchup;
+  const isCompletedPast = status === "completed";
 
   if (isUpcoming) {
     return (
@@ -95,21 +93,8 @@ export default function DayPage() {
     );
   }
 
-  if (isCompletedDay && !completedData) {
-    return (
-      <div className="container" style={{ justifyContent: "center", alignItems: "center", padding: "60px 0" }}>
-        <h2>Day {dayId} data is missing.</h2>
-        <Link href="/dashboard" style={{ marginTop: "24px" }}>
-          <Button variant="secondary">Return to Dashboard</Button>
-        </Link>
-      </div>
-    );
-  }
-
-  const activeTaskData: any = isCurrentDay ? day12Data : completedData;
-
   // ACTIVE SUBMISSION VIEW (CURRENT OR CATCHUP)
-  if (isCurrentDay || isCatchup) {
+  if (isToday || isCatchup) {
     if (isCompleted) {
       return (
         <div className="container" style={{ justifyContent: "center", alignItems: "center" }}>
@@ -144,46 +129,46 @@ export default function DayPage() {
         <main style={{ paddingBottom: "60px" }}>
           <section className={styles.titleSection}>
             <div className={styles.sectionLabel}>{isCatchup ? "Catch Up" : "Today's Build"}</div>
-            <h1 className={styles.taskTitle}>{activeTaskData.title}</h1>
-            <p className={styles.description}>{activeTaskData.description || activeTaskData.subtitle}</p>
+            <h1 className={styles.taskTitle}>{initialDayData.title}</h1>
+            <p className={styles.description}>{initialDayData.description}</p>
 
             <div className={styles.metaGrid}>
               <div>
                 <div className={styles.metaLabel}>Estimated time</div>
                 <div className={styles.timeEstimate}>
                   <Clock size={16} />
-                  {activeTaskData.estimatedTime}
+                  {initialDayData.estimatedTime}
                 </div>
               </div>
               <div>
                 <div className={styles.metaLabel}>{isCatchup ? "Difficulty" : "Skills"}</div>
                 <div className={styles.skillsList}>
-                  {activeTaskData.skills?.map((skill: string) => (
-                    <Badge key={skill}>{skill}</Badge>
+                  {initialDayData.tags?.map((tag: string) => (
+                    <Badge key={tag}>{tag}</Badge>
                   ))}
-                  {activeTaskData.difficulty && (
-                    <Badge>{activeTaskData.difficulty}</Badge>
+                  {initialDayData.difficulty && (
+                    <Badge>{initialDayData.difficulty}</Badge>
                   )}
                 </div>
               </div>
             </div>
           </section>
 
-          {(activeTaskData.whatILearned || activeTaskData.learningObjectives) && isCatchup && (
+          {(initialDayData.whatILearned || initialDayData.learningObjectives) && isCatchup && (
             <>
-              {activeTaskData.whatILearned && (
+              {initialDayData.whatILearned && (
                 <section className={styles.cardSection}>
                   <h2 className={styles.cardSectionTitle}>What you&apos;ll learn</h2>
                   <div className={styles.journalTextBox}>
-                    <p>{activeTaskData.whatILearned}</p>
+                    <p>{initialDayData.whatILearned}</p>
                   </div>
                 </section>
               )}
-              {activeTaskData.learningObjectives && (
+              {initialDayData.learningObjectives && (
                 <section className={styles.cardSection}>
                   <h2 className={styles.cardSectionTitle}>Learning Objectives</h2>
                   <ul className={styles.objectivesList}>
-                    {activeTaskData.learningObjectives.map((obj: string, i: number) => (
+                    {initialDayData.learningObjectives.map((obj: string, i: number) => (
                       <li key={i}>
                         <CheckSquare size={16} className={styles.objectiveIcon} />
                         {obj}
@@ -192,12 +177,12 @@ export default function DayPage() {
                   </ul>
                 </section>
               )}
-              {activeTaskData.resources && (
+              {initialDayData.resources && (
                  <section className={styles.cardSection}>
                   <h2 className={styles.cardSectionTitle}>Resources & Tags</h2>
                   <div className={styles.resourcesGrid}>
                     <div className={styles.resourcesList}>
-                      {activeTaskData.resources.map((res: string, i: number) => (
+                      {initialDayData.resources.map((res: string, i: number) => (
                         <div key={i} className={styles.resourceItem}>
                           <ExternalLink size={14} />
                           {res}
@@ -205,7 +190,7 @@ export default function DayPage() {
                       ))}
                     </div>
                     <div className={styles.skillsList}>
-                      {activeTaskData.tags?.map((tag: string) => (
+                      {initialDayData.tags?.map((tag: string) => (
                         <Badge key={tag}>{tag}</Badge>
                       ))}
                     </div>
@@ -294,7 +279,7 @@ export default function DayPage() {
   }
 
   // COMPLETED OR MISSED VIEW (DAYS 1-11)
-  if (completedData) {
+  if (isCompletedPast || isMissed) {
     return (
       <div className="container">
         <header className={styles.header}>
@@ -303,17 +288,17 @@ export default function DayPage() {
             Back to Dashboard
           </Link>
           <div className={styles.dayInfo}>
-            <div className={styles.dayLabel}>DAY {completedData.day}</div>
+            <div className={styles.dayLabel}>DAY {initialDayData.id}</div>
             <div className={styles.progressTextCompleted}>
-              {isMissed ? "Missed" : completedData.completionDate}
+              {isMissed ? "Missed" : initialDayData.completionDate}
             </div>
           </div>
         </header>
 
         <main style={{ paddingBottom: "60px" }}>
           <section className={styles.titleSection}>
-            <h1 className={styles.taskTitle}>{completedData.title}</h1>
-            <p className={styles.description}>{completedData.subtitle}</p>
+            <h1 className={styles.taskTitle}>{initialDayData.title}</h1>
+            <p className={styles.description}>{initialDayData.description}</p>
 
             <div className={styles.metaRow}>
               {isMissed ? (
@@ -327,10 +312,10 @@ export default function DayPage() {
               )}
               <div className={styles.timeEstimate}>
                 <Clock size={16} />
-                {completedData.estimatedTime}
+                {initialDayData.estimatedTime}
               </div>
               <div className={styles.difficultyBadge}>
-                {completedData.difficulty}
+                {initialDayData.difficulty}
               </div>
             </div>
           </section>
@@ -338,14 +323,14 @@ export default function DayPage() {
           <section className={styles.journalSection}>
             <h2 className={styles.sectionHeader}>{isMissed ? "What you were expected to learn" : "What I learned"}</h2>
             <div className={styles.journalTextBox}>
-              <p>{completedData.whatILearned}</p>
+              <p>{initialDayData.whatILearned}</p>
             </div>
           </section>
 
           <section className={styles.journalSection}>
             <h2 className={styles.sectionHeader}>Learning Objectives</h2>
             <ul className={styles.objectivesList}>
-              {completedData?.learningObjectives?.map((obj: string, i: number) => (
+              {initialDayData.learningObjectives?.map((obj: string, i: number) => (
                 <li key={i}>
                   <CheckSquare size={16} className={styles.objectiveIcon} />
                   {obj}
@@ -358,7 +343,7 @@ export default function DayPage() {
             <h2 className={styles.sectionHeader}>Resources & Tags</h2>
             <div className={styles.resourcesGrid}>
               <div className={styles.resourcesList}>
-                {completedData?.resources?.map((res: string, i: number) => (
+                {initialDayData.resources?.map((res: string, i: number) => (
                   <div key={i} className={styles.resourceItem}>
                     <ExternalLink size={14} />
                     {res}
@@ -366,7 +351,7 @@ export default function DayPage() {
                 ))}
               </div>
               <div className={styles.skillsList}>
-                {completedData?.tags?.map((tag: string) => (
+                {initialDayData.tags?.map((tag: string) => (
                   <Badge key={tag}>{tag}</Badge>
                 ))}
               </div>
@@ -395,7 +380,7 @@ export default function DayPage() {
                 </>
               ) : (
                 <>
-                  <a href={completedData.githubUrl} target="_blank" rel="noopener noreferrer" className={styles.proofCardLink}>
+                  <a href={initialDayData.githubUrl} target="_blank" rel="noopener noreferrer" className={styles.proofCardLink}>
                     <GitCommit size={20} className={styles.proofIcon} />
                     <div>
                       <div className={styles.proofCardTitle}>GitHub Repository</div>
@@ -404,7 +389,7 @@ export default function DayPage() {
                     <ArrowLeft size={16} className={styles.proofArrow} style={{ transform: "rotate(135deg)" }} />
                   </a>
 
-                  <a href={completedData.linkedinUrl} target="_blank" rel="noopener noreferrer" className={styles.proofCardLink}>
+                  <a href={initialDayData.linkedinUrl} target="_blank" rel="noopener noreferrer" className={styles.proofCardLink}>
                     <Briefcase size={20} className={styles.proofIcon} style={{ color: "#0A66C2" }} />
                     <div>
                       <div className={styles.proofCardTitle}>LinkedIn Post</div>

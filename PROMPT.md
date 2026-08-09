@@ -74,3 +74,16 @@ Fixed dynamic completed-day routing so Days 1–11 load their own day-specific c
 ## Missed & Catch-Up Day Flow
 
 Added state-aware completed, missed, and catch-up day experiences with correct proof handling, actionable catch-up flow, and synchronized dashboard day statuses.
+
+
+
+
+
+### `prompt.md`
+
+Don't record the AI's claim that it worked if it **didn't actually work**. Since you're maintaining an honest AI usage log, add the task only as a development attempt/fix:
+
+```md
+## Missed & Catch-Up State
+
+Implemented explicit missed and catch-up day states with separate proof/submission behavior, then debugged the day-status data flow to ensure the correct UI renders for each state.

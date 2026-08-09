@@ -9,7 +9,7 @@ import styles from "./page.module.css";
 import studentData from "@/data/student.json";
 import challengeData from "@/data/challenge.json";
 import day12Data from "@/data/day12.json";
-import completedDaysData from "@/data/completed-days.json";
+import { getDayById } from "@/lib/dayResolver";
 
 export default function DashboardPage() {
   const [selectedDay, setSelectedDay] = useState<number | null>(null);
@@ -19,41 +19,19 @@ export default function DashboardPage() {
   const history = useMemo(() => {
     return Array.from({ length: challengeData.totalDays }, (_, i) => {
       const dayNum = i + 1;
-      let status = "upcoming";
-      let title = `Build task for Day ${dayNum}`;
+      const dayData = getDayById(dayNum);
+
       let learned = "";
-      let timeSpent = "-";
-      
-      if (dayNum < studentData.currentDay) {
-        const pastDay = completedDaysData.find((d: any) => d.day === dayNum);
-        if (pastDay) {
-          status = pastDay.status || "completed";
-          title = pastDay.title;
-          if (status === "completed") {
-             learned = `Successfully learned and applied concepts for day ${dayNum}. Built something cool and shared it.`;
-             timeSpent = pastDay.estimatedTime || "45 min";
-          } else if (status === "missed") {
-             timeSpent = pastDay.estimatedTime || "-";
-          } else if (status === "catchup") {
-             timeSpent = pastDay.estimatedTime || "-";
-          }
-        } else {
-          status = "completed"; // fallback
-        }
-      } else if (dayNum === studentData.currentDay) {
-        status = "today";
-        title = day12Data.title;
-        timeSpent = day12Data.estimatedTime;
+      if (dayData?.status === "completed") {
+        learned = `Successfully learned and applied concepts for day ${dayNum}. Built something cool and shared it.`;
       }
-      
-      if (status === "upcoming") title = "Locked";
 
       return {
         day: dayNum,
-        status,
-        title,
+        status: dayData?.status || "upcoming",
+        title: dayData?.title || `Build task for Day ${dayNum}`,
         learned,
-        timeSpent,
+        timeSpent: dayData?.estimatedTime || "-",
       };
     });
   }, []);
