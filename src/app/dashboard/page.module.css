@@ -25,7 +25,24 @@
   }
 }
 
-.header { padding: 24px 0 32px; }
+.header { padding: 24px 0 32px; display: flex; flex-direction: column; }
+
+.backLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: color 0.2s ease, transform 0.2s ease;
+  width: fit-content;
+}
+
+.backLink:hover {
+  color: var(--text-main);
+  transform: translateX(-2px);
+}
 
 .greeting {
   font-family: var(--font-syne), "Segoe UI", Roboto, Helvetica, Arial, sans-serif;

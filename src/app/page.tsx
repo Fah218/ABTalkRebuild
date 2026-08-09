@@ -1,6 +1,8 @@
 import { Header } from "@/components/shared/Header";
 import { Hero } from "@/components/landing/Hero";
 import { ProductIntro } from "@/components/landing/ProductIntro";
+import { ProductStats } from "@/components/landing/ProductStats";
+import { BuilderVoices } from "@/components/landing/BuilderVoices";
 import { JourneyVisualization } from "@/components/landing/JourneyVisualization";
 import { BuildProveShare } from "@/components/landing/BuildProveShare";
 import { DayPreview } from "@/components/landing/DayPreview";
@@ -12,18 +14,22 @@ export default function LandingPage() {
   return (
     <>
       <Header />
-      <div className="container" style={{ minHeight: "auto" }}>
+      <div className="container" style={{ minHeight: "auto", display: "block" }}>
         <main>
           <Hero />
           <ProductIntro />
         </main>
       </div>
+
+      <ProductStats />
+      
+      <BuilderVoices />
       
       {/* 
         Full width components or components that handle their own 
         container logic / bleeding background 
       */}
-      <div className="container" style={{ minHeight: "auto" }}>
+      <div className="container" style={{ minHeight: "auto", display: "block" }}>
         <JourneyVisualization />
         <BuildProveShare />
         <DayPreview />

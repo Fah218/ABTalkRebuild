@@ -3,7 +3,7 @@
 
 import React, { useState, useMemo } from "react";
 import Link from "next/link";
-import { Clock, Code2, Briefcase, Trophy, Zap, ArrowRight, Search, CheckCircle2, AlertCircle, Calendar, Lock } from "lucide-react";
+import { Clock, Code2, Briefcase, Trophy, Zap, ArrowRight, ArrowLeft, Search, CheckCircle2, AlertCircle, Calendar, Lock } from "lucide-react";
 import { Header } from "@/components/shared/Header";
 import styles from "./page.module.css";
 import studentData from "@/data/student.json";
@@ -209,6 +209,10 @@ export default function DashboardPage() {
       <Header />
       <div className="container">
         <header className={`${styles.header} ${styles.animateSection}`}>
+        <Link href="/" className={styles.backLink} style={{ marginBottom: '16px' }}>
+          <ArrowLeft size={16} />
+          Back to Home
+        </Link>
         <h1 className={styles.greeting}>Good evening, builder.</h1>
         
         {/* Today's Build Hero */}
