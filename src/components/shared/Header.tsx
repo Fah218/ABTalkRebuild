@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
-import { Terminal, Menu, X, Sun, Moon } from "lucide-react";
+import { Menu, X, Sun, Moon } from "lucide-react";
 import { useTheme } from "@/components/ThemeProvider";
 import studentData from "@/data/student.json";
 import styles from "./Header.module.css";
@@ -38,7 +38,6 @@ export function Header() {
       }}
     >
       <Link href="/" className={`${styles.logo} font-heading font-extrabold`} onClick={handleLogoClick}>
-        <Terminal size={20} className={styles.logoIcon} />
         ABTalks
       </Link>
 
