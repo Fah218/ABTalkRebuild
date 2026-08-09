@@ -92,3 +92,14 @@ Implemented explicit missed and catch-up day states with separate proof/submissi
 ## Missed Day UX
 
 Refined the missed-day experience with a red missed status, empty proof state, and disabled recovery action while keeping completed, catch-up, today, and upcoming states distinct.
+
+
+Update all `/day/[id]` pages.
+
+- Add the existing Home-page Day/Night theme toggle to every day page.
+- Make light/dark mode work consistently for Completed, Missed, Catch-Up, Current, and Upcoming states.
+- Use the exact same Home-page typography: Syne for headings and Manrope for body/UI.
+- Do not create a new theme or font system.
+- Preserve all existing day-status logic and functionality.
+- Ensure the design remains responsive at 390px.
+- Verify `/day/1`, `/day/10`, `/day/11`, `/day/12`, and an upcoming day.
