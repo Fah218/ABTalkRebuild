@@ -196,3 +196,8 @@ Added a mock student identity and initials-based avatar to make the dashboard fe
 ## Light Theme Readability
 
 Improved light-theme text contrast and readability across the home page while preserving visual hierarchy and branding.
+
+
+## Light Theme Readability
+
+Improved light-theme text contrast and readability across the Dashboard and Day 1–12 challenge pages while preserving the existing visual hierarchy.

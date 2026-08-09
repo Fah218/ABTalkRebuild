@@ -550,7 +550,7 @@ export default function DayPage() {
             {isCompletedPast && (
               <section className={styles.journalSection} style={{ marginTop: "8px", marginBottom: "32px" }}>
                 <h2 className={styles.sectionHeader}>Build Record</h2>
-                <div style={{ display: "flex", gap: "24px", color: "var(--text-secondary)", fontSize: "0.95rem" }}>
+                <div style={{ display: "flex", gap: "24px", color: "var(--text-muted)", fontSize: "0.95rem" }}>
                   <div style={{ display: "flex", alignItems: "center", gap: "6px" }}><CheckCircle2 size={16} color="var(--brand-success)" /> <strong>Completed:</strong> {initialDayData.completionDate}</div>
                   <div style={{ display: "flex", alignItems: "center", gap: "6px" }}><Clock size={16} /> <strong>Duration:</strong> {initialDayData.estimatedTime}</div>
                 </div>
@@ -560,7 +560,7 @@ export default function DayPage() {
             {isCompletedPast && (
               <section className={styles.journalSection}>
                 <h2 className={styles.sectionHeader}>What I Built</h2>
-                <div className={styles.journalTextBox} style={{ fontSize: "1.1rem", lineHeight: 1.6, color: "var(--text-primary)" }}>
+                <div className={styles.journalTextBox} style={{ fontSize: "1.1rem", lineHeight: 1.6, color: "var(--text-main)" }}>
                   <p>{initialDayData.description}</p>
                 </div>
               </section>
@@ -666,7 +666,7 @@ export default function DayPage() {
             {isMissed && (
               <section className={styles.journalSection}>
                 <h2 className={styles.sectionHeader}>Portfolio Record</h2>
-                <Card style={{ padding: '24px', textAlign: 'center', backgroundColor: 'var(--bg-secondary)', border: '1px solid var(--border)' }}>
+                <Card style={{ padding: '24px', textAlign: 'center', backgroundColor: 'var(--bg-surface-muted)', border: '1px solid var(--border-color)' }}>
                   <p style={{ color: 'var(--text-muted)', margin: 0 }}>No public proof recorded</p>
                 </Card>
               </section>
@@ -678,11 +678,11 @@ export default function DayPage() {
                   <AlertCircle size={24} className={styles.completedBannerIcon} style={{ color: 'var(--brand-danger)' }} />
                   <div className={styles.completedBannerText}>
                     <strong style={{ color: 'var(--brand-danger)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>MISSED DAY</strong>
-                    <span style={{ color: 'var(--text-secondary)' }}>This day cannot be recovered, but it remains part of your 60-day journey.</span>
+                    <span style={{ color: 'var(--text-muted)' }}>This day cannot be recovered, but it remains part of your 60-day journey.</span>
                   </div>
                 </div>
                 <Link href="/dashboard" style={{ width: '100%' }}>
-                  <Button style={{ width: "100%", padding: "16px", fontSize: "16px", backgroundColor: 'var(--bg-card)', color: 'var(--text-primary)', border: '1px solid var(--border)' }}>
+                  <Button style={{ width: "100%", padding: "16px", fontSize: "16px", backgroundColor: 'var(--bg-surface)', color: 'var(--text-main)', border: '1px solid var(--border-color)' }}>
                     Back to Dashboard &rarr;
                   </Button>
                 </Link>
