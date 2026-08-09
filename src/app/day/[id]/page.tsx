@@ -20,8 +20,6 @@ export default function DayPage() {
   const params = useParams();
   const dayId = parseInt(params?.id as string, 10);
   
-  const [forceCatchup, setForceCatchup] = useState(false);
-
   const initialDayData = getDayById(dayId);
   
   // States
@@ -32,7 +30,7 @@ export default function DayPage() {
   const [isCompleted, setIsCompleted] = useState(false);
 
   useEffect(() => {
-    if (initialDayData && (initialDayData.status === "today" || initialDayData.status === "catchup" || forceCatchup)) {
+    if (initialDayData && (initialDayData.status === "today" || initialDayData.status === "catchup")) {
       if (initialDayData.checklist) {
         setChecklist(initialDayData.checklist);
       } else {
@@ -43,7 +41,7 @@ export default function DayPage() {
         ]);
       }
     }
-  }, [initialDayData, forceCatchup]);
+  }, [initialDayData]);
 
   const handleToggleCheck = (id: string) => {
     setChecklist(prev => 
@@ -77,8 +75,8 @@ export default function DayPage() {
   const { status } = initialDayData;
   const isUpcoming = status === "upcoming";
   const isToday = status === "today";
-  const isCatchup = status === "catchup" || forceCatchup;
-  const isMissed = status === "missed" && !forceCatchup;
+  const isCatchup = status === "catchup";
+  const isMissed = status === "missed";
   const isCompletedPast = status === "completed";
 
   if (isUpcoming) {
@@ -128,7 +126,9 @@ export default function DayPage() {
 
         <main style={{ paddingBottom: "60px" }}>
           <section className={styles.titleSection}>
-            <div className={styles.sectionLabel}>{isCatchup ? "Catch Up" : "Today's Build"}</div>
+            <div className={styles.sectionLabel} style={isCatchup ? { color: '#F59E0B', display: 'flex', alignItems: 'center', gap: '6px' } : {}}>
+              {isCatchup && <AlertCircle size={14} />} {isCatchup ? "Catch Up" : "Today's Build"}
+            </div>
             <h1 className={styles.taskTitle}>{initialDayData.title}</h1>
             <p className={styles.description}>{initialDayData.description}</p>
 
@@ -289,7 +289,7 @@ export default function DayPage() {
           </Link>
           <div className={styles.dayInfo}>
             <div className={styles.dayLabel}>DAY {initialDayData.id}</div>
-            <div className={styles.progressTextCompleted}>
+            <div className={styles.progressTextCompleted} style={isMissed ? { color: 'var(--brand-danger)', fontWeight: 600 } : {}}>
               {isMissed ? "Missed" : initialDayData.completionDate}
             </div>
           </div>
@@ -406,8 +406,8 @@ export default function DayPage() {
             <div className={styles.completedBanner} style={{ backgroundColor: 'rgba(239, 68, 68, 0.1)', borderColor: 'rgba(239, 68, 68, 0.2)' }}>
               <AlertCircle size={24} className={styles.completedBannerIcon} style={{ color: 'var(--brand-danger)' }} />
               <div className={styles.completedBannerText}>
-                <strong>Missed</strong>
-                <span>This day was missed, but your overall progress is still intact.</span>
+                <strong style={{ color: 'var(--brand-danger)' }}>Missed</strong>
+                <span style={{ color: 'var(--text-secondary)' }}>You missed this challenge day. This day cannot be recovered, but your overall 60-day journey continues.</span>
               </div>
             </div>
           ) : (
@@ -423,10 +423,10 @@ export default function DayPage() {
           {isMissed && (
              <section style={{ marginTop: '24px' }}>
                 <Button 
-                  style={{ width: "100%", padding: "16px", fontSize: "16px" }}
-                  onClick={() => setForceCatchup(true)}
+                  style={{ width: "100%", padding: "16px", fontSize: "16px", backgroundColor: 'var(--bg-secondary)', color: 'var(--text-muted)', cursor: 'not-allowed', opacity: 0.7 }}
+                  disabled
                 >
-                  Catch Up
+                  Day Missed
                 </Button>
              </section>
           )}

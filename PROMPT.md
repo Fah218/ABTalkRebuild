@@ -87,3 +87,8 @@ Don't record the AI's claim that it worked if it **didn't actually work**. Since
 ## Missed & Catch-Up State
 
 Implemented explicit missed and catch-up day states with separate proof/submission behavior, then debugged the day-status data flow to ensure the correct UI renders for each state.
+
+
+## Missed Day UX
+
+Refined the missed-day experience with a red missed status, empty proof state, and disabled recovery action while keeping completed, catch-up, today, and upcoming states distinct.
