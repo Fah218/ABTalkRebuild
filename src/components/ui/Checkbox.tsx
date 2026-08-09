@@ -6,14 +6,25 @@ export type CheckboxProps = React.InputHTMLAttributes<HTMLInputElement>;
 
 const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
   ({ className, checked, ...props }, ref) => {
+    const { style, ...restProps } = props;
     return (
-      <div className={cn("checkbox-wrapper", className)} style={{ position: "relative", display: "inline-block", width: "20px", height: "20px" }}>
+      <div className={cn("checkbox-wrapper", className)} style={{ position: "relative", display: "inline-block", width: "20px", height: "20px", ...style }}>
         <input
           type="checkbox"
           ref={ref}
           checked={checked}
-          className="sr-only"
-          {...props}
+          style={{
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            width: '100%',
+            height: '100%',
+            opacity: 0,
+            cursor: 'pointer',
+            margin: 0,
+            zIndex: 2
+          }}
+          {...restProps}
         />
         <div 
           className="checkbox-custom"

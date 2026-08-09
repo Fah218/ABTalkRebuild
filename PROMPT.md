@@ -154,3 +154,5 @@ Improved the Day 12 challenge flow with an interactive Definition of Done checkl
 
 ### Key Learning
 Practiced responsive design, semantic HTML, component structure, and presenting development work as public proof of progress.
+
+Improve the completed-day journal pages to feel more professional and portfolio-focused. Add a “What I Built” section, rename “Your Proof” to “Proof of Work”, use clean GitHub/LinkedIn proof cards, add a Build Record with completion date and duration, and add Previous Day / Next Day navigation. Keep completed days read-only with no checkboxes, editable fields, or submit button. Preserve the existing ABTalks font, dark/light theme, responsive design, and use dynamic data for every day without hardcoding Day 7.

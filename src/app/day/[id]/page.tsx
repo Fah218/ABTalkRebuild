@@ -30,7 +30,14 @@ export default function DayPage() {
   const isCompletedPast = status === "completed";
 
   // States
-  const [checklist, setChecklist] = useState<{id: string, label: string, checked: boolean}[]>([]);
+  const [checklist, setChecklist] = useState<{id: string, label: string, checked: boolean}[]>(() => {
+    if (initialDayData && (initialDayData.status === "today" || initialDayData.status === "catchup")) {
+      return initialDayData.checklist || [
+        { id: '1', label: 'Complete today\'s build objectives', checked: false }
+      ];
+    }
+    return [];
+  });
   const [githubUrl, setGithubUrl] = useState("");
   const [githubCommit, setGithubCommit] = useState("");
   const [linkedinUrl, setLinkedinUrl] = useState("");
@@ -39,18 +46,6 @@ export default function DayPage() {
   const [isConfirmed, setIsConfirmed] = useState(false);
   const [openAccordion, setOpenAccordion] = useState<string | null>("task");
   const [isCompleted, setIsCompleted] = useState(false);
-
-  useEffect(() => {
-    if (initialDayData && (initialDayData.status === "today" || initialDayData.status === "catchup")) {
-      if (initialDayData.checklist) {
-        setChecklist(initialDayData.checklist);
-      } else {
-        setChecklist([
-          { id: '1', label: 'Complete today\'s build objectives', checked: false }
-        ]);
-      }
-    }
-  }, [initialDayData]);
 
   const handleToggleCheck = (id: string) => {
     setChecklist(prev => 
@@ -366,14 +361,16 @@ export default function DayPage() {
               <h2 className={styles.cardSectionTitle}>Definition of Done</h2>
               <div className={styles.checklist}>
                 {checklist.map(item => (
-                  <div 
+                  <label 
                     key={item.id} 
                     className={`${styles.checklistItem} ${item.checked ? styles.checked : ''}`}
-                    onClick={() => handleToggleCheck(item.id)}
                   >
-                    <Checkbox checked={item.checked} readOnly style={{ pointerEvents: 'none' }} />
+                    <Checkbox 
+                      checked={item.checked} 
+                      onChange={() => handleToggleCheck(item.id)} 
+                    />
                     <span className={styles.checklistLabel}>{item.label}</span>
-                  </div>
+                  </label>
                 ))}
               </div>
             </section>
@@ -474,13 +471,16 @@ export default function DayPage() {
 
                 <div className={styles.proofDivider} />
 
-                <div 
+                <label 
                   className={`${styles.confirmBox} ${isConfirmed ? styles.checked : ''}`}
-                  onClick={() => setIsConfirmed(!isConfirmed)}
                 >
-                  <Checkbox checked={isConfirmed} readOnly style={{ pointerEvents: 'none', marginTop: '2px' }} />
+                  <Checkbox 
+                    checked={isConfirmed} 
+                    onChange={() => setIsConfirmed(!isConfirmed)} 
+                    style={{ marginTop: '2px' }} 
+                  />
                   <div className={styles.confirmLabel}>I confirm that I have completed today's build.</div>
-                </div>
+                </label>
 
                 <div className={styles.submitAction}>
                   <button 
@@ -525,7 +525,7 @@ export default function DayPage() {
           <main style={{ paddingBottom: "60px" }}>
             <section className={styles.titleSection}>
               <h1 className={styles.taskTitle}>{initialDayData.title}</h1>
-              <p className={styles.description}>{initialDayData.description}</p>
+              {isMissed && <p className={styles.description}>{initialDayData.description}</p>}
 
               <div className={styles.metaRow}>
                 {isMissed ? (
@@ -546,6 +546,25 @@ export default function DayPage() {
                 </div>
               </div>
             </section>
+
+            {isCompletedPast && (
+              <section className={styles.journalSection} style={{ marginTop: "8px", marginBottom: "32px" }}>
+                <h2 className={styles.sectionHeader}>Build Record</h2>
+                <div style={{ display: "flex", gap: "24px", color: "var(--text-secondary)", fontSize: "0.95rem" }}>
+                  <div style={{ display: "flex", alignItems: "center", gap: "6px" }}><CheckCircle2 size={16} color="var(--brand-success)" /> <strong>Completed:</strong> {initialDayData.completionDate}</div>
+                  <div style={{ display: "flex", alignItems: "center", gap: "6px" }}><Clock size={16} /> <strong>Duration:</strong> {initialDayData.estimatedTime}</div>
+                </div>
+              </section>
+            )}
+
+            {isCompletedPast && (
+              <section className={styles.journalSection}>
+                <h2 className={styles.sectionHeader}>What I Built</h2>
+                <div className={styles.journalTextBox} style={{ fontSize: "1.1rem", lineHeight: 1.6, color: "var(--text-primary)" }}>
+                  <p>{initialDayData.description}</p>
+                </div>
+              </section>
+            )}
 
             <section className={styles.journalSection}>
               <h2 className={styles.sectionHeader}>{isMissed ? "What you were expected to learn" : "What I learned"}</h2>
@@ -586,7 +605,7 @@ export default function DayPage() {
             </section>
 
             <section className={styles.journalSection}>
-              <h2 className={styles.sectionHeader}>{isMissed ? "Proof of Work" : "Your Proof"}</h2>
+              <h2 className={styles.sectionHeader}>Proof of Work</h2>
               <div className={styles.proofGrid}>
                 {isMissed ? (
                   <>
@@ -611,7 +630,7 @@ export default function DayPage() {
                       <GitCommit size={20} className={styles.proofIcon} />
                       <div>
                         <div className={styles.proofCardTitle}>GitHub Repository</div>
-                        <div className={styles.proofCardDesc}>View commit history</div>
+                        <div className={styles.proofCardDesc}>View Repository ↗</div>
                       </div>
                       <ArrowLeft size={16} className={styles.proofArrow} style={{ transform: "rotate(135deg)" }} />
                     </a>
@@ -620,7 +639,7 @@ export default function DayPage() {
                       <Briefcase size={20} className={styles.proofIcon} style={{ color: "#0A66C2" }} />
                       <div>
                         <div className={styles.proofCardTitle}>LinkedIn Post</div>
-                        <div className={styles.proofCardDesc}>View public commitment</div>
+                        <div className={styles.proofCardDesc}>View LinkedIn Post ↗</div>
                       </div>
                       <ArrowLeft size={16} className={styles.proofArrow} style={{ transform: "rotate(135deg)" }} />
                     </a>
@@ -628,6 +647,21 @@ export default function DayPage() {
                 )}
               </div>
             </section>
+
+            {isCompletedPast && (
+              <div style={{ display: "flex", justifyContent: "space-between", marginTop: "48px", paddingTop: "24px", borderTop: "1px solid var(--border-color)" }}>
+                {dayId > 1 ? (
+                  <Link href={`/day/${dayId - 1}`}>
+                    <Button variant="secondary">← Previous Day</Button>
+                  </Link>
+                ) : <div />}
+                {dayId < challengeData.totalDays ? (
+                  <Link href={`/day/${dayId + 1}`}>
+                    <Button variant="secondary">Next Day →</Button>
+                  </Link>
+                ) : <div />}
+              </div>
+            )}
 
             {isMissed && (
               <section className={styles.journalSection}>
