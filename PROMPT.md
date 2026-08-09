@@ -1,209 +1,136 @@
-# AI Prompt Log
+AI Prompt Log:
 
-## Initial Prototype
 
-Instructed the AI to create the ABTalks frontend redesign as a mobile-first Next.js application, targeting a 390px viewport and implementing the required routes:
+Initial Prototype:
 
-* `/`
-* `/dashboard`
-* `/day/12`
+- Build ABTalks as a mobile-first Next.js app for a 390px viewport.
+- Implement `/`, `/dashboard`, and `/day/12`.
+- Use mocked data, reusable components, Vanilla CSS, and a natural dark/light visual system.
+- Include the 60-day challenge, student dashboard, daily task, proof-of-work flow, and required edge cases.
 
-The prompt specified the product flow, visual direction, reusable frontend architecture, mocked data, student dashboard, challenge-day experience, proof-of-work flow, edge cases, and responsive requirements.
 
-## Subsequent Development
 
-The initial prototype was reviewed and will be refined incrementally through focused AI-assisted tasks covering:
 
-1. Landing page refinement
-2. Dashboard refinement
-3. Challenge Day refinement
-4. Interaction and edge-case improvements
-5. 390px responsive polish
-6. Final accessibility and UI QA
+Landing Page:
 
+- Redesign `/` into a premium product experience around Build → Prove → Share → Repeat.
+- Add a stronger hero, 60-day journey, Day 12 preview, benefits, streak philosophy, navigation, and subtle scroll animations.
+- Use Syne for display typography and Manrope for body/UI.
+- Keep the design mobile-first at 390px.
 
 
 
-## AI-Assisted Development Tasks
 
-8. Redesigned the landing page at `/` as a premium mobile-first product experience with a stronger visual story, Build → Prove → Share journey, 60-day visualization, Day 12 preview, benefits, streak/progress philosophy, improved navigation, and subtle scroll animations while maintaining the 390px target.
+Navigation & Theme:
 
+- Fix Home, How It Works, Challenge, and Start navigation.
+- Add a persistent Day/Night theme toggle across the application.
+- Preserve the existing dark theme and create a complementary light theme.
 
 
-9. Refined the landing page typography using Syne for hero headings, major section headings, milestones, and ABTalks brand elements, while keeping Manrope for body text, navigation, descriptions, buttons, and UI content. Improved typography hierarchy and visual consistency without changing the existing landing-page structure or functionality.
 
 
-9. Fixed landing-page navbar navigation and routing for Home, How It Works, Challenge, and Start.
+Dashboard:
 
+- Redesign `/dashboard` as a Builder Command Center.
+- Add streak/progress tracking, 60-day activity, milestones, day status, quick search, and meaningful gamification.
+- Support completed, current, upcoming, missed, and catch-up states.
+- Make the activity grid clickable so each day opens its own journal/task view.
+- Keep the dashboard responsive at 390px.
 
-10. Added a site-wide dark/light theme toggle with the existing dark theme preserved, a new light theme, persistent theme preference, and responsive sun/moon controls across all required routes.
 
 
 
-9. Redesigned the `/dashboard` as a premium Builder Command Center with improved visual hierarchy, refined streak/progress presentation, polished task and achievement cards, Syne/Manrope typography, subtle animations, responsive 390px-first layout, and consistent dark/light theme support while preserving existing functionality.
+Day Status & Routing:
 
+- Make `/day/[id]` dynamically render the correct day instead of always showing Day 12.
+- Create distinct states for completed, missed, catch-up, current, and upcoming days.
+- Use one consistent day-status data source across Dashboard and Day pages.
+- Keep completed days read-only and make catch-up days actionable.
 
 
 
-## 9. Dashboard Redesign
 
-Redesigned `/dashboard` into a premium builder workspace with a 60-day activity grid, clickable day journals, today’s build focus, streak/progress tracking, meaningful milestone badges, quick search, completed/upcoming/missed states, subtle animations, and strong ABTalks typography/theme consistency. Kept gamification purposeful and focused on real building progress.
+Completed & Missed Days:
 
+- Turn completed days into portfolio-style development journals.
+- Show what was built, what was learned, objectives, resources, tags, and proof of work.
+- Add previous/next day navigation.
+- Make missed days clearly show a missed state, empty proof, and no fake completion.
+- Keep catch-up days actionable with their own submission flow.
 
 
-## Dashboard Activity Journey & Day Flow
 
-Refined the `/dashboard` experience with an interactive 60-day activity system using completed, current, upcoming, missed, and catch-up states. Added state-aware day details, View Task flow, proof/status handling, and responsive interactions while preserving the existing ABTalks visual identity and `/` and `/day/12` experiences.
 
+Day 12:
 
-## Dashboard Activity Interaction
+- Turn Day 12 into a complete learning-to-submission workflow.
+- Add tutorial video, tool of the day, task, learning objectives, resources, LinkedIn guidelines, Definition of Done, optional reflection, and proof of work.
+- Combine GitHub and LinkedIn proof into a clear submission flow.
+- Make the Definition of Done and confirmation checkboxes genuinely interactive.
+- Enable submission only when the required conditions are satisfied.
 
-Enhanced the 60-Day Activity grid with clear status states, a visual legend, clickable day interactions, and contextual day-detail/view-task flow while keeping the ABTalks visual system and responsive behavior consistent.
 
 
-## Dashboard Theme & Typography
 
-Unified `/dashboard` with the landing page's Syne + Manrope typography system and shared dark/light theme toggle while preserving existing dashboard functionality and layout.
 
-## Completed Day Routing & Data
+Day 12 Debugging:
 
-Fixed dynamic completed-day routing so Days 1–11 load their own day-specific content instead of incorrectly rendering the Day 12 challenge. Added proper completed/read-only states while preserving the existing Day 12 experience and shared day-page architecture.
+- Find and fix the root cause of non-functional Definition of Done checkboxes.
+- Ensure each checkbox has independent state and supports checking/unchecking.
+- Remove duplicate confirmation checkboxes.
+- Ensure GitHub and LinkedIn proof states update correctly after valid input.
 
 
 
-## Missed & Catch-Up Day Flow
 
-Added state-aware completed, missed, and catch-up day experiences with correct proof handling, actionable catch-up flow, and synchronized dashboard day statuses.
 
+Typography & Readability:
 
+- Apply the same Syne + Manrope typography system consistently across all routes.
+- Audit light mode for low-contrast text and improve readability across Home, Dashboard, and Day pages.
+- Preserve visual hierarchy without making all text pure black.
 
 
 
-### `prompt.md`
 
-Don't record the AI's claim that it worked if it **didn't actually work**. Since you're maintaining an honest AI usage log, add the task only as a development attempt/fix:
+Student Identity:
 
-```md
-## Missed & Catch-Up State
+- Add a lightweight mocked student identity using Kartikey Patel.
+- Show `KP` as a compact avatar in the shared header.
+- Personalize the dashboard greeting without implementing authentication, accounts, or backend user management.
 
-Implemented explicit missed and catch-up day states with separate proof/submission behavior, then debugged the day-status data flow to ensure the correct UI renders for each state.
 
 
-## Missed Day UX
+Home Page Social Proof:
 
-Refined the missed-day experience with a red missed status, empty proof state, and disabled recovery action while keeping completed, catch-up, today, and upcoming states distinct.
+- Add a compact product stats section and Builder Voices testimonial carousel.
+- Use meaningful product metrics instead of invented user numbers.
+- Keep testimonials responsive at 390px with smooth horizontal interaction.
+- Fix excessive whitespace by identifying the actual layout/CSS root cause.
 
 
-Update all `/day/[id]` pages.
 
-- Add the existing Home-page Day/Night theme toggle to every day page.
-- Make light/dark mode work consistently for Completed, Missed, Catch-Up, Current, and Upcoming states.
-- Use the exact same Home-page typography: Syne for headings and Manrope for body/UI.
-- Do not create a new theme or font system.
-- Preserve all existing day-status logic and functionality.
-- Ensure the design remains responsive at 390px.
-- Verify `/day/1`, `/day/10`, `/day/11`, `/day/12`, and an upcoming day.
 
+Home Page Journey:
 
+- Enhance the 60-Day Journey with small chapter/topic previews under milestone days.
+- Keep the journey visually clear, responsive, and connected to the challenge experience.
 
-Improve Dashboard Milestones.
 
-- Add meaningful milestones: First Week, 10 Builds Shipped, 14 Day Streak, 25 Builds Shipped, 30 Day Builder, 60 Day Builder.
-- Dynamically show Earned, In Progress, and Locked states from real user progress.
-- Add icons, short descriptions, checks, and subtle progress bars.
-- Keep ABTalks professional and portfolio-focused, not childish gamification.
-- Use existing theme, Syne + Manrope typography, and dashboard design.
-- Keep responsive and don't modify unrelated functionality.
 
 
-## Home — 60-Day Journey
+Global Footer:
 
-Enhanced the 60-Day Journey with concise chapter/topic previews under each milestone (Day 01, 15, 30, 45, 60), using challenge data and clickable day navigation while preserving the existing timeline, theme, typography, and 390px mobile-first design.
+- Add a simple responsive footer with ABTalks branding, a professional building-focused quote, and social icons for LinkedIn, Instagram, X/Twitter, YouTube, and Discord.
+- Use a shared Footer component and preserve the existing theme and responsive design.
 
 
-## Day 12 — Today’s Build
 
-Redesigned the current-day task page into a complete learning-to-submission workflow: learning resources, tutorial/tool/task sections, interactive Definition of Done, optional learning reflection, unified GitHub + LinkedIn proof card, required confirmation checkbox, and functional Day 12 submission flow while preserving ABTalks typography, theme, responsiveness, and existing day-status architecture.
 
+Final UI Polish:
 
-
-
-## Day 12 — Submission Flow Fix
-
-Fixed Day 12 interactions: functional accordions, Definition of Done checkboxes, optional learning reflection, dynamic GitHub/LinkedIn proof states, confirmation checkbox, and validation-controlled submission button.
-
-
-## Day 12 — Tutorial Video
-
-Added a functional YouTube tutorial section for the Day 12 portfolio task with embedded playback, video metadata, and a direct "Watch on YouTube" link while keeping the existing ABTalks theme and responsive design.
-
-
-## Day 12 — Responsive Developer Portfolio
-
-Improved the Day 12 challenge flow with an interactive Definition of Done checklist, optional learning reflection, and unified GitHub + LinkedIn proof submission.
-
-### What I Built
-- Responsive developer portfolio layout
-- Hero, About, Skills, and Projects sections
-- Mobile-responsive design
-- Interactive Definition of Done checklist
-- Optional learning summary
-- GitHub repository and commit proof
-- LinkedIn post proof
-- Final completion confirmation and submission flow
-
-### Key Learning
-Practiced responsive design, semantic HTML, component structure, and presenting development work as public proof of progress.
-
-Improve the completed-day journal pages to feel more professional and portfolio-focused. Add a “What I Built” section, rename “Your Proof” to “Proof of Work”, use clean GitHub/LinkedIn proof cards, add a Build Record with completion date and duration, and add Previous Day / Next Day navigation. Keep completed days read-only with no checkboxes, editable fields, or submit button. Preserve the existing ABTalks font, dark/light theme, responsive design, and use dynamic data for every day without hardcoding Day 7.
-
-
-
-
-Improve the home page with a professional social-proof section: real product stats, subtle count-up animation, and a smooth horizontally scrolling Builder Voices/testimonials carousel. Add a clear Back to Home navigation on the dashboard. Preserve ABTalks typography, theme, green accent, responsiveness, accessibility, and reduced-motion support. Do not invent real user numbers.
-
-
-
-
-# Home Page Refinement
-
-Refine the ABTalks home page without changing its existing visual identity.
-
-- Order sections: Hero → How It Works → Stats → Builder Voices → 60-Day Journey → CTA.
-- Replace stats with: 60 Days, 60 Daily Builds, 2 Proof Channels, 1 Building Habit.
-- Move Builder Voices after Stats and implement a smooth responsive horizontal carousel.
-- Fix the huge blank space before Builder Voices by finding the actual CSS/layout root cause.
-- Make everything properly responsive at 390px, especially stats and testimonials.
-- Prevent horizontal page overflow and clipped cards.
-- Keep dashboard-only data such as streak/current progress out of the home page.
-- Keep animations subtle and support `prefers-reduced-motion`.
-- Remove duplicate sections, unnecessary heights/spacers, and test the production build.
-
-
-
-
-# Fix Home Page Spacing
-
-Find and fix the root cause of excessive whitespace around the stats and Builder Voices sections. Check parent layout, min-height, padding, margin and gaps. No negative-margin hacks. Keep responsive behavior and prevent testimonial horizontal overflow.
-
-
-
-## Mock Student Identity
-
-Added a mock student identity and initials-based avatar to make the dashboard feel personalized without implementing authentication or real user accounts.
-
-
-## Light Theme Readability
-
-Improved light-theme text contrast and readability across the home page while preserving visual hierarchy and branding.
-
-
-## Light Theme Readability
-
-Improved light-theme text contrast and readability across the Dashboard and Day 1–12 challenge pages while preserving the existing visual hierarchy.
-
-
-
-## Global Footer
-
-Added a responsive ABTalks footer with branding, a professional quote, and social media icons.
+- Remove unnecessary decorative branding elements.
+- Verify all pages at 360px and 390px.
+- Check dark/light themes, navigation, interactions, accessibility, overflow, and responsive behavior.
+- Run lint and production build before finalizing.

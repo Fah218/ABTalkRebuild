@@ -30,14 +30,7 @@ export default function DayPage() {
   const isCompletedPast = status === "completed";
 
   // States
-  const [checklist, setChecklist] = useState<{id: string, label: string, checked: boolean}[]>(() => {
-    if (initialDayData && (initialDayData.status === "today" || initialDayData.status === "catchup")) {
-      return initialDayData.checklist || [
-        { id: '1', label: 'Complete today\'s build objectives', checked: false }
-      ];
-    }
-    return [];
-  });
+  const [checklist, setChecklist] = useState<{id: string, label: string, checked: boolean}[]>([]);
   const [githubUrl, setGithubUrl] = useState("");
   const [githubCommit, setGithubCommit] = useState("");
   const [linkedinUrl, setLinkedinUrl] = useState("");
@@ -46,6 +39,24 @@ export default function DayPage() {
   const [isConfirmed, setIsConfirmed] = useState(false);
   const [openAccordion, setOpenAccordion] = useState<string | null>("task");
   const [isCompleted, setIsCompleted] = useState(false);
+
+  useEffect(() => {
+    if (initialDayData && (initialDayData.status === "today" || initialDayData.status === "catchup")) {
+      setChecklist(initialDayData.checklist || [
+        { id: '1', label: 'Complete today\'s build objectives', checked: false }
+      ]);
+    } else {
+      setChecklist([]);
+    }
+    setGithubUrl("");
+    setGithubCommit("");
+    setLinkedinUrl("");
+    setWhatILearnedInput("");
+    setReflectionSaved(false);
+    setIsConfirmed(false);
+    setOpenAccordion("task");
+    setIsCompleted(false);
+  }, [dayId, initialDayData?.status]);
 
   const handleToggleCheck = (id: string) => {
     setChecklist(prev => 
