@@ -110,17 +110,22 @@
   display: flex;
   align-items: flex-start;
   gap: 12px;
-  padding: 12px;
-  background-color: var(--bg-surface-muted);
+  padding: 16px;
+  background-color: var(--bg-surface);
   border-radius: var(--radius-md);
   border: 1px solid var(--border-color);
   transition: all var(--transition-fast);
   cursor: pointer;
 }
 
+.checklistItem:hover {
+  background-color: var(--bg-surface-muted);
+  border-color: var(--border-active);
+}
+
 .checklistItem.checked {
-  background-color: var(--bg-surface);
-  border-color: var(--brand-accent);
+  background-color: rgba(var(--brand-success-rgb), 0.05);
+  border-color: rgba(var(--brand-success-rgb), 0.3);
 }
 
 .checklistLabel {
@@ -391,4 +396,231 @@
 .completedBannerText span {
   font-size: 14px;
   color: var(--text-main);
+}
+
+/* 
+  Collapsible Learning Sections (Accordion)
+*/
+.accordionList {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.accordionItem {
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  background-color: var(--bg-surface);
+  overflow: hidden;
+  transition: border-color 0.2s ease;
+}
+
+.accordionHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px;
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+  width: 100%;
+  text-align: left;
+}
+
+.accordionHeaderTitle {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-family: var(--font-syne), "Segoe UI", Roboto, sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+.accordionIconWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background-color: var(--bg-surface-muted);
+  color: var(--brand-primary);
+}
+
+.accordionChevron {
+  color: var(--text-muted);
+  transition: transform 0.3s ease;
+}
+.accordionChevron.open {
+  transform: rotate(180deg);
+}
+
+.accordionContent {
+  padding: 0 16px 16px;
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--text-muted);
+  border-top: 1px solid transparent;
+}
+.accordionItem.open .accordionContent {
+  border-top-color: var(--border-color);
+  padding-top: 16px;
+}
+
+.reflectionArea {
+  margin-top: 12px;
+}
+.reflectionLabel {
+  font-family: var(--font-syne), "Segoe UI", Roboto, sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text-main);
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.optionalTag {
+  font-family: var(--font-manrope), sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-muted);
+  background: var(--bg-surface-muted);
+  padding: 2px 8px;
+  border-radius: var(--radius-full);
+}
+.reflectionTextarea {
+  width: 100%;
+  min-height: 100px;
+  padding: 16px;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  background-color: var(--bg-surface);
+  color: var(--text-main);
+  font-size: 14px;
+  line-height: 1.5;
+  resize: vertical;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.reflectionTextarea:focus {
+  outline: none;
+  border-color: var(--brand-primary);
+  box-shadow: 0 0 0 2px rgba(var(--brand-primary-rgb), 0.15);
+}
+
+/* 
+  Unified Proof Card 
+*/
+.unifiedProofCard {
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  background-color: var(--bg-surface);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+}
+
+.proofSection {
+  padding: 24px;
+}
+
+.proofSectionHeader {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+  font-family: var(--font-syne), "Segoe UI", Roboto, sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+.proofSectionDesc {
+  font-size: 13px;
+  color: var(--text-muted);
+  margin-bottom: 16px;
+  margin-top: -12px;
+  margin-left: 36px;
+}
+
+.proofDivider {
+  height: 1px;
+  background-color: var(--border-color);
+  width: 100%;
+}
+
+.proofStatusNeutral {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 16px;
+  margin-top: 16px;
+  border-radius: var(--radius-md);
+  font-size: 13px;
+  font-weight: 600;
+  background-color: var(--bg-surface-muted);
+  color: var(--text-muted);
+  border: 1px solid transparent;
+}
+.proofStatusNeutral.verified {
+  background-color: rgba(var(--brand-success-rgb), 0.05);
+  border-color: rgba(var(--brand-success-rgb), 0.3);
+  color: var(--brand-success);
+}
+
+.confirmBox {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 24px;
+  background-color: var(--bg-surface-muted);
+}
+.confirmLabel {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-main);
+  line-height: 1.4;
+  margin-top: -2px;
+  cursor: pointer;
+}
+
+.submitAction {
+  padding: 24px;
+  border-top: 1px solid var(--border-color);
+  background-color: var(--bg-surface);
+}
+
+.btnSubmit {
+  width: 100%;
+  padding: 16px;
+  font-size: 16px;
+  font-weight: 700;
+  border-radius: var(--radius-md);
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  transition: all 0.2s ease;
+}
+
+.btnSubmit:not(:disabled) {
+  background-color: var(--brand-primary);
+  color: #fff;
+}
+.btnSubmit:not(:disabled):hover {
+  background-color: var(--brand-primary-dark, #0f3022);
+  transform: translateY(-1px);
+}
+.btnSubmit:not(:disabled):active {
+  transform: translateY(1px);
+}
+
+.btnSubmit:disabled {
+  background-color: var(--bg-surface-muted);
+  color: var(--text-muted);
+  border: 1px solid var(--border-color);
+  cursor: not-allowed;
+  opacity: 0.7;
 }

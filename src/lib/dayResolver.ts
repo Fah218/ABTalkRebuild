@@ -12,6 +12,7 @@ export interface DayData {
   description: string;
   estimatedTime: string;
   difficulty?: string;
+  objective?: string;
   whatILearned?: string;
   learningObjectives?: string[];
   resources?: string[];
@@ -34,6 +35,7 @@ export function getDayById(id: number): DayData | null {
       status: "today",
       title: day12Data.title,
       description: day12Data.description,
+      objective: day12Data.objective,
       estimatedTime: day12Data.estimatedTime,
       difficulty: "Medium", // Or fetch from somewhere else if needed
       checklist: day12Data.checklist,

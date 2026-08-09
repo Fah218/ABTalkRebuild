@@ -119,3 +119,15 @@ Improve Dashboard Milestones.
 ## Home — 60-Day Journey
 
 Enhanced the 60-Day Journey with concise chapter/topic previews under each milestone (Day 01, 15, 30, 45, 60), using challenge data and clickable day navigation while preserving the existing timeline, theme, typography, and 390px mobile-first design.
+
+
+## Day 12 — Today’s Build
+
+Redesigned the current-day task page into a complete learning-to-submission workflow: learning resources, tutorial/tool/task sections, interactive Definition of Done, optional learning reflection, unified GitHub + LinkedIn proof card, required confirmation checkbox, and functional Day 12 submission flow while preserving ABTalks typography, theme, responsiveness, and existing day-status architecture.
+
+
+
+
+## Day 12 — Submission Flow Fix
+
+Fixed Day 12 interactions: functional accordions, Definition of Done checkboxes, optional learning reflection, dynamic GitHub/LinkedIn proof states, confirmation checkbox, and validation-controlled submission button.

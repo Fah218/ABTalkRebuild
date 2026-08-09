@@ -4,7 +4,7 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { useParams } from "next/navigation";
-import { ArrowLeft, Clock, CheckCircle2, Circle, CheckSquare, GitCommit, Briefcase, ExternalLink, AlertCircle } from "lucide-react";
+import { ArrowLeft, Clock, CheckCircle2, Circle, CheckSquare, GitCommit, Briefcase, ExternalLink, AlertCircle, ChevronDown, MonitorPlay, Wrench, FileText, Share2, Target } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
 import { Badge } from "@/components/ui/Badge";
@@ -28,6 +28,9 @@ export default function DayPage() {
   const [githubUrl, setGithubUrl] = useState("");
   const [githubCommit, setGithubCommit] = useState("");
   const [linkedinUrl, setLinkedinUrl] = useState("");
+  const [whatILearnedInput, setWhatILearnedInput] = useState("");
+  const [isConfirmed, setIsConfirmed] = useState(false);
+  const [openAccordion, setOpenAccordion] = useState<string | null>("task");
   const [isCompleted, setIsCompleted] = useState(false);
 
   useEffect(() => {
@@ -50,10 +53,14 @@ export default function DayPage() {
     );
   };
 
+  const toggleAccordion = (id: string) => {
+    setOpenAccordion(prev => prev === id ? null : id);
+  };
+
   const allChecked = checklist.length > 0 && checklist.every(item => item.checked);
-  const githubReady = githubUrl.length > 10 && (githubCommit.length > 5 || initialDayData?.status === "catchup"); // commit might not be required if we simplified
+  const githubReady = githubUrl.length > 10 && (githubCommit.length > 5 || initialDayData?.status === "catchup");
   const linkedinReady = linkedinUrl.length > 10;
-  const canComplete = allChecked && githubReady && linkedinReady;
+  const canComplete = allChecked && githubReady && linkedinReady && isConfirmed;
 
   const handleComplete = () => {
     if (canComplete) {
@@ -167,49 +174,146 @@ export default function DayPage() {
             </section>
 
             {(initialDayData.whatILearned || initialDayData.learningObjectives) && isCatchup && (
-              <>
-                {initialDayData.whatILearned && (
-                  <section className={styles.cardSection}>
-                    <h2 className={styles.cardSectionTitle}>What you&apos;ll learn</h2>
-                    <div className={styles.journalTextBox}>
-                      <p>{initialDayData.whatILearned}</p>
-                    </div>
-                  </section>
-                )}
-                {initialDayData.learningObjectives && (
-                  <section className={styles.cardSection}>
-                    <h2 className={styles.cardSectionTitle}>Learning Objectives</h2>
-                    <ul className={styles.objectivesList}>
-                      {initialDayData.learningObjectives.map((obj: string, i: number) => (
-                        <li key={i}>
-                          <CheckSquare size={16} className={styles.objectiveIcon} />
-                          {obj}
-                        </li>
-                      ))}
-                    </ul>
-                  </section>
-                )}
-                {initialDayData.resources && (
-                   <section className={styles.cardSection}>
-                    <h2 className={styles.cardSectionTitle}>Resources & Tags</h2>
-                    <div className={styles.resourcesGrid}>
-                      <div className={styles.resourcesList}>
-                        {initialDayData.resources.map((res: string, i: number) => (
-                          <div key={i} className={styles.resourceItem}>
-                            <ExternalLink size={14} />
-                            {res}
-                          </div>
-                        ))}
-                      </div>
-                      <div className={styles.skillsList}>
-                        {initialDayData.tags?.map((tag: string) => (
-                          <Badge key={tag}>{tag}</Badge>
-                        ))}
+              <section className={styles.cardSection}>
+                <div className={styles.accordionList}>
+                  {initialDayData.whatILearned && (
+                    <div className={`${styles.accordionItem} ${openAccordion === 'whatILearned' ? styles.open : ''}`}>
+                      <button className={styles.accordionHeader} onClick={() => toggleAccordion('whatILearned')}>
+                        <div className={styles.accordionHeaderTitle}>
+                          <div className={styles.accordionIconWrapper}><FileText size={16} /></div>
+                          What You'll Learn
+                        </div>
+                        <ChevronDown size={20} className={`${styles.accordionChevron} ${openAccordion === 'whatILearned' ? styles.open : ''}`} />
+                      </button>
+                      <div className={styles.accordionContent}>
+                        {initialDayData.whatILearned}
                       </div>
                     </div>
-                   </section>
-                )}
-              </>
+                  )}
+
+                  {initialDayData.learningObjectives && (
+                    <div className={`${styles.accordionItem} ${openAccordion === 'objectives' ? styles.open : ''}`}>
+                      <button className={styles.accordionHeader} onClick={() => toggleAccordion('objectives')}>
+                        <div className={styles.accordionHeaderTitle}>
+                          <div className={styles.accordionIconWrapper}><Target size={16} /></div>
+                          Learning Objectives
+                        </div>
+                        <ChevronDown size={20} className={`${styles.accordionChevron} ${openAccordion === 'objectives' ? styles.open : ''}`} />
+                      </button>
+                      <div className={styles.accordionContent}>
+                        <ul className={styles.objectivesList}>
+                          {initialDayData.learningObjectives.map((obj: string, i: number) => (
+                            <li key={i} style={{ padding: 0, border: 'none', backgroundColor: 'transparent' }}>
+                              <CheckSquare size={16} className={styles.objectiveIcon} />
+                              {obj}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    </div>
+                  )}
+                  
+                  {initialDayData.resources && (
+                    <div className={`${styles.accordionItem} ${openAccordion === 'resources' ? styles.open : ''}`}>
+                      <button className={styles.accordionHeader} onClick={() => toggleAccordion('resources')}>
+                        <div className={styles.accordionHeaderTitle}>
+                          <div className={styles.accordionIconWrapper}><ExternalLink size={16} /></div>
+                          Resources & Tags
+                        </div>
+                        <ChevronDown size={20} className={`${styles.accordionChevron} ${openAccordion === 'resources' ? styles.open : ''}`} />
+                      </button>
+                      <div className={styles.accordionContent}>
+                        <div className={styles.resourcesList}>
+                          {initialDayData.resources.map((res: string, i: number) => (
+                            <div key={i} className={styles.resourceItem} style={{ marginBottom: '8px' }}>
+                              <ExternalLink size={14} />
+                              {res}
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              </section>
+            )}
+
+            {!isCatchup && (
+              <section className={styles.cardSection}>
+                <div className={styles.accordionList}>
+                  <div className={`${styles.accordionItem} ${openAccordion === 'tutorial' ? styles.open : ''}`}>
+                    <button className={styles.accordionHeader} onClick={() => toggleAccordion('tutorial')}>
+                      <div className={styles.accordionHeaderTitle}>
+                        <div className={styles.accordionIconWrapper}><MonitorPlay size={16} /></div>
+                        Tutorial Video
+                      </div>
+                      <ChevronDown size={20} className={`${styles.accordionChevron} ${openAccordion === 'tutorial' ? styles.open : ''}`} />
+                    </button>
+                    <div className={styles.accordionContent}>
+                      <div style={{ backgroundColor: 'var(--bg-surface-muted)', width: '100%', aspectRatio: '16/9', display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: 'var(--radius-md)', border: '1px solid var(--border-color)', marginBottom: '16px' }}>
+                        <MonitorPlay size={48} color="var(--text-muted)" opacity={0.5} />
+                      </div>
+                      Watch the walkthrough before you build. This covers the main concepts needed to complete today's task.
+                    </div>
+                  </div>
+
+                  <div className={`${styles.accordionItem} ${openAccordion === 'tool' ? styles.open : ''}`}>
+                    <button className={styles.accordionHeader} onClick={() => toggleAccordion('tool')}>
+                      <div className={styles.accordionHeaderTitle}>
+                        <div className={styles.accordionIconWrapper}><Wrench size={16} /></div>
+                        Tool of the Day: VS Code
+                      </div>
+                      <ChevronDown size={20} className={`${styles.accordionChevron} ${openAccordion === 'tool' ? styles.open : ''}`} />
+                    </button>
+                    <div className={styles.accordionContent}>
+                      Today we are going to rely heavily on VS Code. Ensure you have the necessary extensions installed, such as ESLint and Prettier, to keep your code clean and standardized.
+                    </div>
+                  </div>
+
+                  <div className={`${styles.accordionItem} ${openAccordion === 'task' ? styles.open : ''}`}>
+                    <button className={styles.accordionHeader} onClick={() => toggleAccordion('task')}>
+                      <div className={styles.accordionHeaderTitle}>
+                        <div className={styles.accordionIconWrapper}><FileText size={16} /></div>
+                        Your Task
+                      </div>
+                      <ChevronDown size={20} className={`${styles.accordionChevron} ${openAccordion === 'task' ? styles.open : ''}`} />
+                    </button>
+                    <div className={styles.accordionContent}>
+                      {initialDayData.objective || "Follow the instructions to complete today's build challenge."}
+                    </div>
+                  </div>
+
+                  <div className={`${styles.accordionItem} ${openAccordion === 'learn' ? styles.open : ''}`}>
+                    <button className={styles.accordionHeader} onClick={() => toggleAccordion('learn')}>
+                      <div className={styles.accordionHeaderTitle}>
+                        <div className={styles.accordionIconWrapper}><Target size={16} /></div>
+                        What You'll Learn
+                      </div>
+                      <ChevronDown size={20} className={`${styles.accordionChevron} ${openAccordion === 'learn' ? styles.open : ''}`} />
+                    </button>
+                    <div className={styles.accordionContent}>
+                      <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                        <li style={{ display: 'flex', alignItems: 'flex-start', gap: '8px' }}><CheckSquare size={14} color="var(--brand-primary)" style={{ marginTop: '3px' }}/> Applying responsive design principles</li>
+                        <li style={{ display: 'flex', alignItems: 'flex-start', gap: '8px' }}><CheckSquare size={14} color="var(--brand-primary)" style={{ marginTop: '3px' }}/> Structuring semantic HTML</li>
+                        <li style={{ display: 'flex', alignItems: 'flex-start', gap: '8px' }}><CheckSquare size={14} color="var(--brand-primary)" style={{ marginTop: '3px' }}/> Showcasing projects professionally</li>
+                      </ul>
+                    </div>
+                  </div>
+
+                  <div className={`${styles.accordionItem} ${openAccordion === 'linkedin' ? styles.open : ''}`}>
+                    <button className={styles.accordionHeader} onClick={() => toggleAccordion('linkedin')}>
+                      <div className={styles.accordionHeaderTitle}>
+                        <div className={styles.accordionIconWrapper}><Share2 size={16} /></div>
+                        LinkedIn Post Guidelines
+                      </div>
+                      <ChevronDown size={20} className={`${styles.accordionChevron} ${openAccordion === 'linkedin' ? styles.open : ''}`} />
+                    </button>
+                    <div className={styles.accordionContent}>
+                      Share a screenshot of your new portfolio. Mention one challenge you overcame while building it, and tag #ABTalks. Include a link to the live version if you have deployed it!
+                    </div>
+                  </div>
+                </div>
+              </section>
             )}
 
             <section className={styles.cardSection}>
@@ -229,61 +333,98 @@ export default function DayPage() {
             </section>
 
             <section className={styles.cardSection}>
-              <h2 className={styles.cardSectionTitle}>Proof of Work</h2>
-              
-              <Card style={{ marginBottom: "16px" }}>
-                <h3 className="font-heading" style={{ fontSize: "15px", fontWeight: 700, marginBottom: "16px" }}>GitHub Proof</h3>
-                <div className={styles.proofForm}>
-                  <div className={styles.proofInputGroup}>
-                    <label className={styles.proofInputLabel}>Repository URL</label>
-                    <Input 
-                      placeholder="https://github.com/username/repo" 
-                      value={githubUrl}
-                      onChange={(e) => setGithubUrl(e.target.value)}
-                    />
-                  </div>
-                  <div className={styles.proofInputGroup}>
-                    <label className={styles.proofInputLabel}>Commit SHA / Message</label>
-                    <Input 
-                      placeholder="e.g. 3a7b9c2 or 'feat: add hero'" 
-                      value={githubCommit}
-                      onChange={(e) => setGithubCommit(e.target.value)}
-                    />
-                  </div>
-                  <div className={`${styles.proofStatus} ${githubReady ? styles.verified : ''}`}>
-                    {githubReady ? <CheckCircle2 size={16} /> : <Circle size={16} />}
-                    {githubReady ? "✓ Repository connected" : "○ Waiting for repository"}
-                  </div>
-                </div>
-              </Card>
-
-              <Card>
-                <h3 className="font-heading" style={{ fontSize: "15px", fontWeight: 700, marginBottom: "16px" }}>LinkedIn Proof</h3>
-                <div className={styles.proofForm}>
-                  <div className={styles.proofInputGroup}>
-                    <label className={styles.proofInputLabel}>Post URL</label>
-                    <Input 
-                      placeholder="https://linkedin.com/posts/..." 
-                      value={linkedinUrl}
-                      onChange={(e) => setLinkedinUrl(e.target.value)}
-                    />
-                  </div>
-                  <div className={`${styles.proofStatus} ${linkedinReady ? styles.verified : ''}`}>
-                    {linkedinReady ? <CheckCircle2 size={16} /> : <Circle size={16} />}
-                    {linkedinReady ? "✓ Post submitted" : "○ Waiting for post"}
-                  </div>
-                </div>
-              </Card>
+              <div className={styles.reflectionArea}>
+                <label className={styles.reflectionLabel}>
+                  What did you learn?
+                  <span className={styles.optionalTag}>Optional</span>
+                </label>
+                <textarea 
+                  className={styles.reflectionTextarea}
+                  placeholder="Briefly describe what you learned or what you improved while completing today's build..."
+                  value={whatILearnedInput}
+                  onChange={(e) => setWhatILearnedInput(e.target.value)}
+                />
+              </div>
             </section>
 
-            <section>
-              <Button 
-                style={{ width: "100%", padding: "16px", fontSize: "16px" }}
-                disabled={!canComplete}
-                onClick={handleComplete}
-              >
-                {canComplete ? (isCatchup ? `Catch Up & Submit` : `Complete Day ${dayId}`) : "Finish requirements to complete"}
-              </Button>
+            <section className={styles.cardSection}>
+              <div className={styles.unifiedProofCard}>
+                <div className={styles.proofSection}>
+                  <div className={styles.proofSectionHeader}>
+                    <GitCommit size={20} />
+                    GitHub Proof
+                  </div>
+                  <div className={styles.proofSectionDesc}>Submit your source code repository link and the exact commit SHA for today's work.</div>
+                  
+                  <div className={styles.proofForm}>
+                    <div className={styles.proofInputGroup}>
+                      <label className={styles.proofInputLabel}>Repository URL</label>
+                      <Input 
+                        placeholder="https://github.com/username/repo" 
+                        value={githubUrl}
+                        onChange={(e) => setGithubUrl(e.target.value)}
+                      />
+                    </div>
+                    <div className={styles.proofInputGroup}>
+                      <label className={styles.proofInputLabel}>Commit SHA / Message</label>
+                      <Input 
+                        placeholder="e.g. 3a7b9c2 or 'feat: add hero'" 
+                        value={githubCommit}
+                        onChange={(e) => setGithubCommit(e.target.value)}
+                      />
+                    </div>
+                    <div className={`${styles.proofStatusNeutral} ${githubReady ? styles.verified : ''}`}>
+                      {githubReady ? <CheckCircle2 size={16} /> : <Circle size={16} />}
+                      {githubReady ? "Repository connected" : "Repository not connected yet"}
+                    </div>
+                  </div>
+                </div>
+
+                <div className={styles.proofDivider} />
+
+                <div className={styles.proofSection}>
+                  <div className={styles.proofSectionHeader}>
+                    <Briefcase size={20} />
+                    LinkedIn Proof
+                  </div>
+                  <div className={styles.proofSectionDesc}>Share your build in public. Paste the direct URL to your LinkedIn post.</div>
+                  
+                  <div className={styles.proofForm}>
+                    <div className={styles.proofInputGroup}>
+                      <label className={styles.proofInputLabel}>Post URL</label>
+                      <Input 
+                        placeholder="https://linkedin.com/posts/..." 
+                        value={linkedinUrl}
+                        onChange={(e) => setLinkedinUrl(e.target.value)}
+                      />
+                    </div>
+                    <div className={`${styles.proofStatusNeutral} ${linkedinReady ? styles.verified : ''}`}>
+                      {linkedinReady ? <CheckCircle2 size={16} /> : <Circle size={16} />}
+                      {linkedinReady ? "Post connected" : "Post not connected yet"}
+                    </div>
+                  </div>
+                </div>
+
+                <div className={styles.proofDivider} />
+
+                <div 
+                  className={styles.confirmBox}
+                  onClick={() => setIsConfirmed(!isConfirmed)}
+                >
+                  <Checkbox checked={isConfirmed} readOnly />
+                  <div className={styles.confirmLabel}>I confirm that I have completed today's task.</div>
+                </div>
+
+                <div className={styles.submitAction}>
+                  <button 
+                    className={styles.btnSubmit}
+                    disabled={!canComplete}
+                    onClick={handleComplete}
+                  >
+                    {canComplete ? (isCatchup ? `Catch Up & Submit` : `Submit Day ${dayId}`) : "Finish requirements to submit"}
+                  </button>
+                </div>
+              </div>
             </section>
           </main>
         </div>
