@@ -136,3 +136,21 @@ Fixed Day 12 interactions: functional accordions, Definition of Done checkboxes,
 ## Day 12 — Tutorial Video
 
 Added a functional YouTube tutorial section for the Day 12 portfolio task with embedded playback, video metadata, and a direct "Watch on YouTube" link while keeping the existing ABTalks theme and responsive design.
+
+
+## Day 12 — Responsive Developer Portfolio
+
+Improved the Day 12 challenge flow with an interactive Definition of Done checklist, optional learning reflection, and unified GitHub + LinkedIn proof submission.
+
+### What I Built
+- Responsive developer portfolio layout
+- Hero, About, Skills, and Projects sections
+- Mobile-responsive design
+- Interactive Definition of Done checklist
+- Optional learning summary
+- GitHub repository and commit proof
+- LinkedIn post proof
+- Final completion confirmation and submission flow
+
+### Key Learning
+Practiced responsive design, semantic HTML, component structure, and presenting development work as public proof of progress.

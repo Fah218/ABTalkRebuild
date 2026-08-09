@@ -46,9 +46,7 @@ export default function DayPage() {
         setChecklist(initialDayData.checklist);
       } else {
         setChecklist([
-          { id: '1', label: 'Complete learning objectives', checked: false },
-          { id: 'github', label: 'GitHub repository updated', checked: false },
-          { id: 'linkedin', label: 'LinkedIn post published', checked: false }
+          { id: '1', label: 'Complete today\'s build objectives', checked: false }
         ]);
       }
     }
@@ -481,7 +479,7 @@ export default function DayPage() {
                   onClick={() => setIsConfirmed(!isConfirmed)}
                 >
                   <Checkbox checked={isConfirmed} readOnly style={{ pointerEvents: 'none', marginTop: '2px' }} />
-                  <div className={styles.confirmLabel}>I confirm that I have completed today's task.</div>
+                  <div className={styles.confirmLabel}>I confirm that I have completed today's build.</div>
                 </div>
 
                 <div className={styles.submitAction}>

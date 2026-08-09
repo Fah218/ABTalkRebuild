@@ -6,11 +6,11 @@
   "estimatedTime": "45–60 min",
   "skills": ["HTML", "CSS", "Responsive Design"],
   "tutorialVideo": {
-    "title": "Build a Responsive Developer Portfolio",
-    "youtubeUrl": "https://www.youtube.com/watch?v=JkYXvZaEp7Q",
-    "youtubeId": "JkYXvZaEp7Q",
-    "channel": "DesignCourse",
-    "description": "Learn how to build a modern, responsive developer portfolio using semantic HTML and custom CSS. This tutorial perfectly covers today's core requirements."
+    "title": "Build a Responsive Personal Portfolio with HTML & CSS | Full Beginners Tutorial 🔥🚀",
+    "youtubeUrl": "https://youtu.be/Slxdo0Dqxlk?si=Zt9ArOqKGatbddUc",
+    "youtubeId": "Slxdo0Dqxlk",
+    "channel": "Under Ctrl",
+    "description": "Learn how to build a modern, responsive developer portfolio using semantic HTML and custom CSS. This comprehensive tutorial covers exactly what you need to complete today's task."
   },
   "checklist": [
     {
@@ -36,16 +36,6 @@
     {
       "id": "responsive",
       "label": "Mobile responsive layout works",
-      "checked": false
-    },
-    {
-      "id": "github",
-      "label": "GitHub repository updated",
-      "checked": false
-    },
-    {
-      "id": "linkedin",
-      "label": "LinkedIn post published",
       "checked": false
     }
   ],
